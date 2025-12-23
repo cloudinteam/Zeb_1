@@ -1,0 +1,10 @@
+# ZEBCOIN Website Robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://zebcoin.ai/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
