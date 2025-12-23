@@ -59,49 +59,55 @@ export function Header() {
                         </Button>
                     </div>
 
-                    {/* Mobile Menu */}
-                    <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                        <SheetTrigger asChild className="md:hidden">
-                            <Button variant="ghost" size="icon">
-                                {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-                            </Button>
-                        </SheetTrigger>
-                        <SheetContent side="right" className="w-[300px] sm:w-[350px] bg-background/95 backdrop-blur-xl">
-                            <div className="flex flex-col gap-6 mt-8">
-                                <div className="flex items-center gap-2">
-                                    <Coins className="h-8 w-8 text-primary" />
-                                    <span className="text-xl font-bold">
-                                        <span className="text-primary">ZEB</span>
-                                        <span className="text-muted-foreground">COIN</span>
-                                    </span>
+                    {/* Mobile Actions - Theme Toggle & Menu */}
+                    <div className="flex items-center gap-2 md:hidden">
+                        <ThemeToggle />
+                        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                            <SheetTrigger asChild>
+                                <Button variant="ghost" size="icon">
+                                    {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                                </Button>
+                            </SheetTrigger>
+                            <SheetContent side="right" className="w-[300px] sm:w-[350px] bg-background/95 backdrop-blur-xl">
+                                <div className="flex flex-col gap-6 mt-8">
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center gap-2">
+                                            <Coins className="h-8 w-8 text-primary" />
+                                            <span className="text-xl font-bold">
+                                                <span className="text-primary">ZEB</span>
+                                                <span className="text-muted-foreground">COIN</span>
+                                            </span>
+                                        </div>
+                                        <ThemeToggle />
+                                    </div>
+                                    <div className="flex flex-col gap-2">
+                                        {navLinks.map((link) => (
+                                            <a
+                                                key={link.name}
+                                                href={link.href}
+                                                onClick={() => setIsOpen(false)}
+                                                className="px-4 py-3 text-base font-medium text-muted-foreground hover:text-primary transition-colors rounded-lg hover:bg-secondary/50"
+                                            >
+                                                {link.name}
+                                            </a>
+                                        ))}
+                                    </div>
+                                    <div className="flex flex-col gap-3 pt-4 border-t border-border">
+                                        <Button variant="outline" className="w-full" asChild>
+                                            <a href="https://zebcoin.ai/assets/img/Zebcoin%20-%20Whitepaper.pdf" target="_blank" rel="noopener noreferrer">
+                                                White Paper
+                                            </a>
+                                        </Button>
+                                        <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90" asChild>
+                                            <a href="https://pancakeswap.finance/" target="_blank" rel="noopener noreferrer">
+                                                Buy ZCN
+                                            </a>
+                                        </Button>
+                                    </div>
                                 </div>
-                                <div className="flex flex-col gap-2">
-                                    {navLinks.map((link) => (
-                                        <a
-                                            key={link.name}
-                                            href={link.href}
-                                            onClick={() => setIsOpen(false)}
-                                            className="px-4 py-3 text-base font-medium text-muted-foreground hover:text-primary transition-colors rounded-lg hover:bg-secondary/50"
-                                        >
-                                            {link.name}
-                                        </a>
-                                    ))}
-                                </div>
-                                <div className="flex flex-col gap-3 pt-4 border-t border-border">
-                                    <Button variant="outline" className="w-full" asChild>
-                                        <a href="https://zebcoin.ai/assets/img/Zebcoin%20-%20Whitepaper.pdf" target="_blank" rel="noopener noreferrer">
-                                            White Paper
-                                        </a>
-                                    </Button>
-                                    <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90" asChild>
-                                        <a href="https://pancakeswap.finance/" target="_blank" rel="noopener noreferrer">
-                                            Buy ZCN
-                                        </a>
-                                    </Button>
-                                </div>
-                            </div>
-                        </SheetContent>
-                    </Sheet>
+                            </SheetContent>
+                        </Sheet>
+                    </div>
                 </nav>
             </div>
         </header>
