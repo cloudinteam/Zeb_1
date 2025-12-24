@@ -174,7 +174,7 @@ export function Team() {
                     {teamMembers.map((member, index) => (
                         <Card
                             key={index}
-                            className="team-card group relative overflow-hidden bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/50 transition-all duration-500 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-2"
+                            className="team-card group relative overflow-hidden bg-card border-primary/20 hover:border-primary/50 transition-all duration-500 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-2"
                         >
                             {/* Hover glow */}
                             <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-orange-500/20 rounded-xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />

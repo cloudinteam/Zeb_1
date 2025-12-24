@@ -76,8 +76,8 @@ export function TokenDistribution() {
                             </CardTitle>
                         </CardHeader>
                         <CardContent className="p-4 lg:p-6">
-                            <div className="h-80 lg:h-96 relative">
-                                <ResponsiveContainer width="100%" height="100%">
+                            <div className="h-80 lg:h-96 relative" style={{ minHeight: '320px' }}>
+                                <ResponsiveContainer width="100%" height="100%" minWidth={200} minHeight={200}>
                                     <PieChart>
                                         <Pie
                                             data={tokenData}

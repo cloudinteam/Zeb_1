@@ -238,7 +238,7 @@ export function SecurityBadges() {
                         {securityBadges.slice(1).map((badge, index) => (
                             <div
                                 key={index}
-                                className={`security-badge group relative bg-card/50 backdrop-blur-sm border border-primary/10 rounded-2xl p-6 text-center hover:border-primary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg ${badge.pending ? 'hover:shadow-orange-500/10' : 'hover:shadow-green-500/10'}`}
+                                className={`security-badge group relative bg-card border border-primary/20 rounded-2xl p-6 text-center hover:border-primary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg ${badge.pending ? 'hover:shadow-orange-500/10' : 'hover:shadow-green-500/10'}`}
                             >
                                 {/* Status indicator */}
                                 <div
@@ -272,7 +272,7 @@ export function SecurityBadges() {
                 </div>
 
                 {/* Security Features */}
-                <div ref={featuresRef} className="bg-gradient-to-br from-card/80 to-secondary/50 backdrop-blur-sm rounded-3xl border border-primary/20 p-8 lg:p-12 relative overflow-hidden">
+                <div ref={featuresRef} className="bg-card border border-primary/20 rounded-3xl p-8 lg:p-12 relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/10 rounded-full blur-3xl" />
                     <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary/10 rounded-full blur-3xl" />
 

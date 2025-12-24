@@ -150,7 +150,7 @@ export function CommunityStats() {
                     {stats.map((stat, index) => (
                         <div
                             key={index}
-                            className="stat-card group relative bg-card/50 backdrop-blur-sm border border-primary/10 rounded-2xl p-6 text-center hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                            className="stat-card group relative bg-card border border-primary/20 rounded-2xl p-6 text-center hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg shadow-sm"
                             style={{ '--stat-color': stat.color } as React.CSSProperties}
                         >
                             {/* Glow effect on hover */}

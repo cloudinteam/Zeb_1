@@ -146,7 +146,7 @@ export function FAQ() {
                             <AccordionItem
                                 key={index}
                                 value={`item-${index}`}
-                                className="faq-item group bg-gradient-to-br from-card/80 to-card/50 backdrop-blur-md border border-primary/10 rounded-2xl px-6 overflow-hidden transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 data-[state=open]:border-primary/40 data-[state=open]:bg-gradient-to-br data-[state=open]:from-primary/10 data-[state=open]:to-transparent"
+                                className="faq-item group bg-card border border-primary/20 rounded-2xl px-6 overflow-hidden transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 data-[state=open]:border-primary/40 data-[state=open]:bg-primary/5"
                             >
                                 <AccordionTrigger className="text-left text-base lg:text-lg hover:no-underline py-6 gap-4">
                                     <div className="flex items-center gap-4">
