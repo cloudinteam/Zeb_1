@@ -33,7 +33,33 @@ const faqData = [
         answer: 'Yes, ZEB Coins (ZCN) are designed for multiple use cases within the ZEBCOIN ecosystem. They can be used for transactions on the upcoming ZEB Chain, accessing DeFi lending services, participating in the NFT marketplace, governance voting, and more. As the ecosystem develops through 2025-2028, more utility features will be added.',
         icon: '💳',
     },
+    {
+        question: 'How Do I Set Up a Wallet for ZCN?',
+        answer: 'Step 1: Download MetaMask or Trust Wallet from the official app store or browser extension. Step 2: Create a new wallet and securely save your 12-word recovery phrase (never share this!). Step 3: Add the Binance Smart Chain network to your wallet. Step 4: Fund your wallet with BNB for transaction fees and swapping. Your wallet is now ready to receive and store ZCN tokens.',
+        icon: '👛',
+    },
+    {
+        question: 'How Does ZCN Staking Work?',
+        answer: 'Staking ZCN allows you to earn passive rewards by locking your tokens for a set period. The longer you stake, the higher your APY (Annual Percentage Yield). Rewards are calculated daily and can be claimed after the lock period ends. Our staking calculator above helps you estimate potential returns. Staking will be available after the main platform launch.',
+        icon: '📈',
+    },
+    {
+        question: 'What Makes ZEBCOIN Different from Other AI Tokens?',
+        answer: 'ZEBCOIN uniquely combines three powerful pillars: 1) AI-Powered DeFi with intelligent lending protocols, 2) Decentralized Identity through ZebAi for secure verification without central authorities, and 3) Environmental Sustainability with green energy initiatives. Unlike single-purpose AI tokens, we offer a complete ecosystem with DEX, NFT marketplace, and cross-chain capabilities.',
+        icon: '🎯',
+    },
+    {
+        question: 'What Security Measures Does ZEBCOIN Implement?',
+        answer: 'Security is paramount at ZEBCOIN. We implement: multi-signature wallets for treasury funds, time-locked admin functions preventing sudden changes, smart contract audits by reputable firms (in progress), KYC verification for the core team, liquidity locking at launch, and anti-whale mechanisms to prevent market manipulation. We follow industry best practices to protect our community.',
+        icon: '🔒',
+    },
+    {
+        question: 'When Will the ZEB Chain Launch?',
+        answer: 'According to our roadmap, ZEB Chain development begins in Phase 2 (Q3 2025) with the Beta launch planned for Phase 3 (Q1 2026). The full ecosystem including blockchain explorer, DEX transparency features, and cross-chain bridges is scheduled for 2026-2027. Follow our social channels for the latest updates on development progress.',
+        icon: '⛓️',
+    },
 ];
+
 
 export function FAQ() {
     const sectionRef = useRef<HTMLElement>(null);

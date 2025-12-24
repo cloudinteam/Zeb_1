@@ -183,11 +183,21 @@ export function Hero() {
                         </div>
 
                         {/* Smart Contract Address */}
-                        <div ref={contractRef} className="bg-secondary/30 backdrop-blur-sm border border-primary/20 rounded-xl px-4 py-3 inline-flex items-center gap-3 mb-10">
-                            <span className="text-xs sm:text-sm text-muted-foreground">Smart Contract Address</span>
-                            <code className="text-xs sm:text-sm font-mono text-primary bg-background/50 px-3 py-1 rounded-md">
-                                Coming Soon
-                            </code>
+                        <div ref={contractRef} className="bg-secondary/30 backdrop-blur-sm border border-primary/20 rounded-xl px-4 py-3 inline-flex flex-wrap items-center gap-3 mb-10">
+                            <div className="flex items-center gap-2">
+                                <div className="w-6 h-6 rounded-full bg-orange-500/20 flex items-center justify-center">
+                                    <svg className="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fillRule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clipRule="evenodd" />
+                                    </svg>
+                                </div>
+                                <span className="text-xs sm:text-sm text-muted-foreground">Smart Contract</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <code className="text-xs sm:text-sm font-mono text-primary bg-background/50 px-3 py-1 rounded-md">
+                                    Audit in Progress
+                                </code>
+                                <span className="text-xs text-orange-500 animate-pulse">●</span>
+                            </div>
                         </div>
 
                         {/* CTA Buttons */}

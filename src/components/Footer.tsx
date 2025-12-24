@@ -61,8 +61,12 @@ export function Footer() {
                         <h3 className="text-2xl lg:text-3xl font-bold mb-3">
                             Stay Updated with <span className="text-primary">ZEBCOIN</span>
                         </h3>
-                        <p className="text-muted-foreground mb-6">
+                        <p className="text-muted-foreground mb-2">
                             Get the latest news, updates, and exclusive offers delivered to your inbox.
+                        </p>
+                        <p className="text-sm text-primary font-medium mb-6 flex items-center justify-center gap-2">
+                            <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                            Subscribe now for exclusive airdrop eligibility!
                         </p>
                         <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
                             <Input
