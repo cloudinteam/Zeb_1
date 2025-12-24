@@ -1,8 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Badge } from '@/components/ui/badge';
-import { Shield, CheckCircle, Clock, FileCheck, Lock, Eye } from 'lucide-react';
+import { Shield, CheckCircle, Clock, FileCheck, Lock, Eye, Copy, Check } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
+const CONTRACT_ADDRESS = '0x7B1AF1bf711caF5A53C27b15171709CA67f60da2d';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -67,10 +70,21 @@ const securityFeatures = [
 ];
 
 export function SecurityBadges() {
+    const [copied, setCopied] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
     const headerRef = useRef<HTMLDivElement>(null);
     const badgesRef = useRef<HTMLDivElement>(null);
     const featuresRef = useRef<HTMLDivElement>(null);
+
+    const copyToClipboard = async () => {
+        try {
+            await navigator.clipboard.writeText(CONTRACT_ADDRESS);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            console.error('Failed to copy:', err);
+        }
+    };
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -168,40 +182,93 @@ export function SecurityBadges() {
                 </div>
 
                 {/* Security Badges Grid */}
-                <div ref={badgesRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 lg:gap-6 mb-16">
-                    {securityBadges.map((badge, index) => (
-                        <div
-                            key={index}
-                            className={`security-badge group relative bg-card/50 backdrop-blur-sm border border-primary/10 rounded-2xl p-6 text-center hover:border-primary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg ${badge.pending ? 'hover:shadow-orange-500/10' : 'hover:shadow-green-500/10'}`}
-                        >
-                            {/* Status indicator */}
-                            <div
-                                className={`absolute top-3 right-3 w-2 h-2 rounded-full ${badge.pending ? 'bg-orange-500 animate-pulse' : 'bg-green-500'}`}
-                            />
+                <div ref={badgesRef} className="space-y-6 mb-16">
+                    {/* Smart Contract Audit - Featured Card with Contract Address */}
+                    <div className="security-badge group relative bg-gradient-to-br from-orange-500/10 via-card/80 to-primary/5 backdrop-blur-sm border border-orange-500/20 rounded-3xl p-6 lg:p-8 hover:border-orange-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/10">
+                        {/* Status indicator */}
+                        <div className="absolute top-4 right-4 flex items-center gap-2">
+                            <span className="text-xs font-medium text-orange-500">In Progress</span>
+                            <div className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+                        </div>
 
+                        <div className="flex flex-col lg:flex-row items-center gap-6">
                             {/* Icon */}
-                            <div
-                                className={`w-14 h-14 rounded-2xl ${badge.bgColor} flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:scale-110`}
-                            >
-                                <badge.icon className="w-7 h-7" style={{ color: badge.color }} />
+                            <div className="w-16 h-16 rounded-2xl bg-orange-500/10 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                                <Clock className="w-8 h-8" style={{ color: '#FFA500' }} />
                             </div>
 
-                            {/* Title */}
-                            <h3 className="font-bold text-sm mb-1 group-hover:text-primary transition-colors">
-                                {badge.title}
-                            </h3>
+                            <div className="flex-1 text-center lg:text-left">
+                                <h3 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors">
+                                    Smart Contract Audit
+                                </h3>
+                                <p className="text-sm text-muted-foreground mb-4">
+                                    Comprehensive audit by leading security firm underway
+                                </p>
 
-                            {/* Status */}
-                            <p className={`text-xs font-medium mb-2 ${badge.statusColor}`}>
-                                {badge.status}
-                            </p>
-
-                            {/* Description */}
-                            <p className="text-xs text-muted-foreground leading-relaxed">
-                                {badge.description}
-                            </p>
+                                {/* Contract Address */}
+                                <div className="flex flex-col sm:flex-row items-center gap-3">
+                                    <div className="bg-background/70 border border-primary/20 rounded-xl px-4 py-2 font-mono text-xs sm:text-sm text-muted-foreground break-all">
+                                        {CONTRACT_ADDRESS}
+                                    </div>
+                                    <Button
+                                        onClick={copyToClipboard}
+                                        variant="outline"
+                                        size="sm"
+                                        className={`rounded-xl border-primary/20 hover:border-primary hover:bg-primary/10 transition-all min-w-[100px] ${copied ? 'border-green-500 bg-green-500/10' : ''}`}
+                                    >
+                                        {copied ? (
+                                            <>
+                                                <Check className="w-4 h-4 mr-2 text-green-500" />
+                                                <span className="text-green-500">Copied!</span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Copy className="w-4 h-4 mr-2" />
+                                                Copy
+                                            </>
+                                        )}
+                                    </Button>
+                                </div>
+                            </div>
                         </div>
-                    ))}
+                    </div>
+
+                    {/* Other Security Badges */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+                        {securityBadges.slice(1).map((badge, index) => (
+                            <div
+                                key={index}
+                                className={`security-badge group relative bg-card/50 backdrop-blur-sm border border-primary/10 rounded-2xl p-6 text-center hover:border-primary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg ${badge.pending ? 'hover:shadow-orange-500/10' : 'hover:shadow-green-500/10'}`}
+                            >
+                                {/* Status indicator */}
+                                <div
+                                    className={`absolute top-3 right-3 w-2 h-2 rounded-full ${badge.pending ? 'bg-orange-500 animate-pulse' : 'bg-green-500'}`}
+                                />
+
+                                {/* Icon */}
+                                <div
+                                    className={`w-14 h-14 rounded-2xl ${badge.bgColor} flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:scale-110`}
+                                >
+                                    <badge.icon className="w-7 h-7" style={{ color: badge.color }} />
+                                </div>
+
+                                {/* Title */}
+                                <h3 className="font-bold text-sm mb-1 group-hover:text-primary transition-colors">
+                                    {badge.title}
+                                </h3>
+
+                                {/* Status */}
+                                <p className={`text-xs font-medium mb-2 ${badge.statusColor}`}>
+                                    {badge.status}
+                                </p>
+
+                                {/* Description */}
+                                <p className="text-xs text-muted-foreground leading-relaxed">
+                                    {badge.description}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
                 {/* Security Features */}

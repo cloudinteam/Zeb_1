@@ -1,15 +1,18 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, FileText, Sparkles, Zap } from 'lucide-react';
+import { ArrowRight, FileText, Sparkles, Zap, Copy, Check, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { CoinScene } from '@/components/three/CoinScene';
 import { ParticleNetwork } from '@/components/three/ParticleNetwork';
 
+const CONTRACT_ADDRESS = '0x7B1AF1bf711caF5A53C27b15171709CA67f60da2d';
+
 gsap.registerPlugin(ScrollTrigger);
 
 export function Hero() {
+    const [copied, setCopied] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
     const badgeRef = useRef<HTMLDivElement>(null);
     const headingRef = useRef<HTMLHeadingElement>(null);
@@ -18,6 +21,16 @@ export function Hero() {
     const contractRef = useRef<HTMLDivElement>(null);
     const ctaRef = useRef<HTMLDivElement>(null);
     const infoRef = useRef<HTMLDivElement>(null);
+
+    const copyToClipboard = async () => {
+        try {
+            await navigator.clipboard.writeText(CONTRACT_ADDRESS);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            console.error('Failed to copy:', err);
+        }
+    };
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -182,21 +195,43 @@ export function Hero() {
                             </div>
                         </div>
 
-                        {/* Smart Contract Address */}
-                        <div ref={contractRef} className="bg-secondary/30 backdrop-blur-sm border border-primary/20 rounded-xl px-4 py-3 inline-flex flex-wrap items-center gap-3 mb-10">
-                            <div className="flex items-center gap-2">
-                                <div className="w-6 h-6 rounded-full bg-orange-500/20 flex items-center justify-center">
-                                    <svg className="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fillRule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clipRule="evenodd" />
-                                    </svg>
+                        {/* Smart Contract Audit */}
+                        <div ref={contractRef} className="bg-gradient-to-r from-orange-500/10 via-secondary/30 to-primary/10 backdrop-blur-sm border border-orange-500/30 rounded-2xl p-4 sm:p-5 mb-10 max-w-xl mx-auto lg:mx-0">
+                            <div className="flex items-center gap-3 mb-3">
+                                <div className="w-10 h-10 rounded-xl bg-orange-500/20 flex items-center justify-center">
+                                    <Clock className="w-5 h-5 text-orange-500" />
                                 </div>
-                                <span className="text-xs sm:text-sm text-muted-foreground">Smart Contract</span>
+                                <div>
+                                    <h3 className="font-bold text-sm sm:text-base">Smart Contract Audit</h3>
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-xs text-orange-500 font-medium">In Progress</span>
+                                        <span className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
+                                    </div>
+                                </div>
                             </div>
-                            <div className="flex items-center gap-2">
-                                <code className="text-xs sm:text-sm font-mono text-primary bg-background/50 px-3 py-1 rounded-md">
-                                    Audit in Progress
+
+                            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                                <code className="flex-1 text-xs font-mono text-muted-foreground bg-background/70 border border-primary/20 px-3 py-2 rounded-xl break-all">
+                                    {CONTRACT_ADDRESS}
                                 </code>
-                                <span className="text-xs text-orange-500 animate-pulse">●</span>
+                                <Button
+                                    onClick={copyToClipboard}
+                                    variant="outline"
+                                    size="sm"
+                                    className={`rounded-xl border-primary/20 hover:border-primary hover:bg-primary/10 transition-all ${copied ? 'border-green-500 bg-green-500/10' : ''}`}
+                                >
+                                    {copied ? (
+                                        <>
+                                            <Check className="w-4 h-4 mr-2 text-green-500" />
+                                            <span className="text-green-500">Copied!</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Copy className="w-4 h-4 mr-2" />
+                                            Copy
+                                        </>
+                                    )}
+                                </Button>
                             </div>
                         </div>
 
