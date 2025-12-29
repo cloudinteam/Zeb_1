@@ -1,6 +1,6 @@
 import { useRef, useMemo, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Environment } from '@react-three/drei';
+import { Float, Environment, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -8,6 +8,14 @@ function GoldenCoin() {
     const meshRef = useRef<THREE.Group>(null);
     const { theme } = useTheme();
     const isDark = theme === 'dark';
+
+    // Load the logo texture
+    const logoTexture = useTexture('/zebcoin-logo.png');
+
+    // Configure texture for better quality
+    logoTexture.colorSpace = THREE.SRGBColorSpace;
+    logoTexture.minFilter = THREE.LinearFilter;
+    logoTexture.magFilter = THREE.LinearFilter;
 
     // Vibrant gold colors
     const goldColor = isDark ? '#FFD700' : '#DAA520';
@@ -53,36 +61,27 @@ function GoldenCoin() {
                     />
                 </mesh>
 
-                {/* Inner decorative ring */}
-                <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 0.065, 0]}>
-                    <torusGeometry args={[0.85, 0.03, 8, 64]} />
+                {/* Front face with logo */}
+                <mesh position={[0, 0.065, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+                    <circleGeometry args={[1.0, 64]} />
                     <meshStandardMaterial
-                        color={highlightColor}
-                        metalness={1}
-                        roughness={0.08}
+                        map={logoTexture}
+                        transparent={true}
+                        metalness={0.3}
+                        roughness={0.4}
+                        side={THREE.FrontSide}
                     />
                 </mesh>
 
-                {/* Center emblem - Z shape */}
-                <mesh position={[0, 0.07, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-                    <ringGeometry args={[0.3, 0.5, 6]} />
+                {/* Back face with logo (rotated) */}
+                <mesh position={[0, -0.065, 0]} rotation={[Math.PI / 2, 0, Math.PI]}>
+                    <circleGeometry args={[1.0, 64]} />
                     <meshStandardMaterial
-                        color={highlightColor}
-                        metalness={1}
-                        roughness={0.1}
-                        side={THREE.DoubleSide}
-                    />
-                </mesh>
-
-                {/* Glow sphere in center */}
-                <mesh position={[0, 0.08, 0]}>
-                    <sphereGeometry args={[0.15, 32, 32]} />
-                    <meshStandardMaterial
-                        color={goldColor}
-                        metalness={0.5}
-                        roughness={0.3}
-                        emissive={goldColor}
-                        emissiveIntensity={isDark ? 0.5 : 0.2}
+                        map={logoTexture}
+                        transparent={true}
+                        metalness={0.3}
+                        roughness={0.4}
+                        side={THREE.FrontSide}
                     />
                 </mesh>
             </group>

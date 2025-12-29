@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { CoinScene } from '@/components/three/CoinScene';
 import { ParticleNetwork } from '@/components/three/ParticleNetwork';
 
+
 const CONTRACT_ADDRESS = '0x7B1AF1bf711caF5A53C27b15171709CA67f60da2d';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -144,8 +145,29 @@ export function Hero() {
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-7xl mx-auto">
-                    {/* 3D Coin - Left side on desktop, top on mobile */}
-                    <div className="order-1 lg:order-1 flex justify-center">
+                    {/* 3D Coin with Logo - Left side on desktop, top on mobile */}
+                    <div className="order-1 lg:order-1 flex flex-col items-center justify-center gap-6">
+                        {/* Zeb Logo above 3D coin */}
+                        <div className="flex items-center gap-4 mb-4">
+                            <div className="relative">
+                                {/* Glow effect behind logo */}
+                                <div className="absolute inset-0 bg-primary/30 rounded-full blur-xl" />
+                                {/* Logo */}
+                                <img
+                                    src="/zebcoin-logo.png"
+                                    alt="ZEBCOIN Logo"
+                                    className="w-20 h-20 lg:w-24 lg:h-24 object-contain drop-shadow-2xl relative z-10"
+                                />
+                            </div>
+                            <div className="text-left">
+                                <h2 className="text-3xl lg:text-4xl font-bold">
+                                    <span className="text-primary">ZEB</span>
+                                    <span className="text-foreground">COIN</span>
+                                </h2>
+                                <p className="text-sm text-muted-foreground">AI-Powered Crypto</p>
+                            </div>
+                        </div>
+                        {/* 3D Coin Scene */}
                         <div className="w-full max-w-md lg:max-w-lg aspect-square">
                             <CoinScene />
                         </div>

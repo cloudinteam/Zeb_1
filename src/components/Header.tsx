@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Menu, X, Coins } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { ThemeToggle } from '@/components/ThemeToggle';
+
 
 const navLinks = [
     { name: 'Home', href: '#home' },
@@ -23,7 +24,11 @@ export function Header() {
                     <a href="#home" className="flex items-center gap-2 group">
                         <div className="relative">
                             <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-primary/0 blur-xl group-hover:blur-2xl transition-all duration-300" />
-                            <Coins className="h-8 w-8 lg:h-10 lg:w-10 text-primary relative z-10" />
+                            <img
+                                src="/zebcoin-logo.png"
+                                alt="ZEBCOIN Logo"
+                                className="h-10 w-10 lg:h-12 lg:w-12 relative z-10 object-contain"
+                            />
                         </div>
                         <span className="text-xl lg:text-2xl font-bold tracking-tight">
                             <span className="text-primary">ZEB</span>
@@ -72,7 +77,11 @@ export function Header() {
                                 <div className="flex flex-col gap-6 mt-8">
                                     <div className="flex items-center justify-between">
                                         <div className="flex items-center gap-2">
-                                            <Coins className="h-8 w-8 text-primary" />
+                                            <img
+                                                src="/zebcoin-logo.png"
+                                                alt="ZEBCOIN Logo"
+                                                className="h-10 w-10 object-contain"
+                                            />
                                             <span className="text-xl font-bold">
                                                 <span className="text-primary">ZEB</span>
                                                 <span className="text-muted-foreground">COIN</span>

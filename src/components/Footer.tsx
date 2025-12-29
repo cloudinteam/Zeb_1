@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Coins, Mail, Twitter, Send, ExternalLink, ArrowUp, Heart, Globe } from 'lucide-react';
+import { Mail, Twitter, Send, ExternalLink, ArrowUp, Heart, Globe } from 'lucide-react';
+
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Input } from '@/components/ui/input';
@@ -91,9 +92,11 @@ export function Footer() {
                     {/* Brand */}
                     <div className="lg:col-span-2">
                         <a href="#home" className="flex items-center gap-3 mb-6 group">
-                            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-orange-500 flex items-center justify-center shadow-lg group-hover:shadow-primary/30 transition-shadow">
-                                <Coins className="h-6 w-6 text-white" />
-                            </div>
+                            <img
+                                src="/zebcoin-logo.png"
+                                alt="ZEBCOIN Logo"
+                                className="h-12 w-12 object-contain group-hover:scale-105 transition-transform"
+                            />
                             <span className="text-2xl font-bold">
                                 <span className="text-primary">ZEB</span>
                                 <span className="text-foreground">COIN</span>
