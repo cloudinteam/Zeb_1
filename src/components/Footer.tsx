@@ -1,9 +1,7 @@
-import { useState } from 'react';
-import { Mail, Twitter, Send, ExternalLink, ArrowUp, Heart, Globe } from 'lucide-react';
+import { Twitter, Send, ExternalLink, ArrowUp, Heart, Globe, Mail } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { Input } from '@/components/ui/input';
 
 const footerLinks = {
     product: [
@@ -24,18 +22,6 @@ const footerLinks = {
 };
 
 export function Footer() {
-    const [email, setEmail] = useState('');
-    const [subscribed, setSubscribed] = useState(false);
-
-    const handleSubscribe = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (email) {
-            setSubscribed(true);
-            setEmail('');
-            setTimeout(() => setSubscribed(false), 3000);
-        }
-    };
-
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
@@ -51,37 +37,50 @@ export function Footer() {
                 <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-orange-500/5 rounded-full blur-3xl" />
             </div>
 
-            {/* Newsletter Section */}
+            {/* Community CTA Section */}
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="bg-gradient-to-r from-primary/10 via-orange-500/10 to-primary/10 border border-primary/20 rounded-3xl p-8 lg:p-12 mb-12 relative overflow-hidden">
                     <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary/20 rounded-full blur-3xl" />
                     <div className="relative z-10 max-w-2xl mx-auto text-center">
                         <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/20 mb-6">
-                            <Mail className="w-8 h-8 text-primary" />
+                            <Send className="w-8 h-8 text-primary" />
                         </div>
                         <h3 className="text-2xl lg:text-3xl font-bold mb-3">
-                            Stay Updated with <span className="text-primary">ZEBCOIN</span>
+                            Join Our <span className="text-primary">Community</span>
                         </h3>
                         <p className="text-muted-foreground mb-2">
-                            Get the latest news, updates, and exclusive offers delivered to your inbox.
+                            Stay connected with ZEBCOIN for the latest updates, announcements, and exclusive opportunities.
                         </p>
                         <p className="text-sm text-primary font-medium mb-6 flex items-center justify-center gap-2">
                             <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                            Subscribe now for exclusive airdrop eligibility!
+                            Follow us on social media to never miss an update!
                         </p>
-                        <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                            <Input
-                                type="email"
-                                placeholder="Enter your email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                className="bg-background/50 border-primary/20 focus:border-primary"
-                                required
-                            />
-                            <Button type="submit" className="bg-primary hover:bg-primary/90 text-primary-foreground whitespace-nowrap">
-                                {subscribed ? '✓ Subscribed!' : 'Subscribe'}
+                        <div className="flex items-center justify-center gap-4">
+                            <Button
+                                variant="outline"
+                                size="lg"
+                                className="gap-2 border-primary/30 hover:border-primary hover:bg-primary/10"
+                                asChild
+                            >
+                                <a href="#" target="_blank" rel="noopener noreferrer">
+                                    <Twitter className="w-5 h-5" style={{ color: '#1DA1F2' }} />
+                                    Follow on Twitter
+                                </a>
                             </Button>
-                        </form>
+                            <Button
+                                size="lg"
+                                className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground"
+                                asChild
+                            >
+                                <a href="#" target="_blank" rel="noopener noreferrer">
+                                    <Send className="w-5 h-5" />
+                                    Join Telegram
+                                </a>
+                            </Button>
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-6">
+                            📧 Email subscription coming soon!
+                        </p>
                     </div>
                 </div>
             </div>

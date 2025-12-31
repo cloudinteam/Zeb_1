@@ -6,7 +6,7 @@ import { WhyZebcoin } from '@/components/WhyZebcoin';
 import { StakingCalculator } from '@/components/StakingCalculator';
 import { TokenDistribution } from '@/components/TokenDistribution';
 import { Roadmap } from '@/components/Roadmap';
-import { Team } from '@/components/Team';
+// import { Team } from '@/components/Team';
 import { Partners } from '@/components/Partners';
 import { SecurityBadges } from '@/components/SecurityBadges';
 import { FAQ } from '@/components/FAQ';
@@ -24,7 +24,7 @@ function App() {
         <StakingCalculator />
         <TokenDistribution />
         <Roadmap />
-        <Team />
+        {/* <Team /> */}
         <Partners />
         <SecurityBadges />
         <FAQ />
