@@ -126,7 +126,7 @@ No environment variables required for basic deployment.
 
 ## 📄 License
 
-© 2025 ZEBCOIN. All rights reserved.
+© 2026 ZEBCOIN. All rights reserved.
 
 ## 🔗 Links
 

@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { gsap } from 'gsap';
 import { Rocket, Sparkles } from 'lucide-react';
 
@@ -15,58 +15,98 @@ export function Countdown() {
     const [timeLeft, setTimeLeft] = useState<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
     const [mounted, setMounted] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
-    const unitsRef = useRef<HTMLDivElement[]>([]);
+    const numberRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const prevValuesRef = useRef<number[]>([0, 0, 0, 0]);
 
+    const calculateTimeLeft = useCallback((): TimeLeft => {
+        const now = new Date().getTime();
+        const target = TARGET_DATE.getTime();
+        const difference = target - now;
+
+        if (difference <= 0) {
+            return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+        }
+
+        return {
+            days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+            hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+            minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+            seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        };
+    }, []);
+
+    // Initial mount
     useEffect(() => {
         setMounted(true);
+        const initialTime = calculateTimeLeft();
+        setTimeLeft(initialTime);
+        prevValuesRef.current = [initialTime.days, initialTime.hours, initialTime.minutes, initialTime.seconds];
+    }, [calculateTimeLeft]);
 
-        const calculateTimeLeft = (): TimeLeft => {
-            const now = new Date().getTime();
-            const target = TARGET_DATE.getTime();
-            const difference = target - now;
-
-            if (difference <= 0) {
-                return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-            }
-
-            return {
-                days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-                minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-                seconds: Math.floor((difference % (1000 * 60)) / 1000),
-            };
-        };
-
-        setTimeLeft(calculateTimeLeft());
+    // Timer interval
+    useEffect(() => {
+        if (!mounted) return;
 
         const timer = setInterval(() => {
-            setTimeLeft(calculateTimeLeft());
+            const newTime = calculateTimeLeft();
+            const newValues = [newTime.days, newTime.hours, newTime.minutes, newTime.seconds];
+
+            // Animate flip for changed values
+            newValues.forEach((value, index) => {
+                if (value !== prevValuesRef.current[index] && numberRefs.current[index]) {
+                    const numberEl = numberRefs.current[index];
+                    if (numberEl) {
+                        // GSAP flip animation
+                        gsap.fromTo(
+                            numberEl,
+                            {
+                                rotateX: 0,
+                                scale: 1,
+                                opacity: 1
+                            },
+                            {
+                                rotateX: -90,
+                                scale: 0.8,
+                                opacity: 0,
+                                duration: 0.2,
+                                ease: 'power2.in',
+                                onComplete: () => {
+                                    gsap.fromTo(
+                                        numberEl,
+                                        {
+                                            rotateX: 90,
+                                            scale: 0.8,
+                                            opacity: 0
+                                        },
+                                        {
+                                            rotateX: 0,
+                                            scale: 1,
+                                            opacity: 1,
+                                            duration: 0.3,
+                                            ease: 'power2.out'
+                                        }
+                                    );
+                                }
+                            }
+                        );
+                    }
+                }
+            });
+
+            prevValuesRef.current = newValues;
+            setTimeLeft(newTime);
         }, 1000);
 
         return () => clearInterval(timer);
-    }, []);
+    }, [mounted, calculateTimeLeft]);
 
+    // Entrance animation
     useEffect(() => {
         if (mounted && containerRef.current) {
-            // Entrance animation
             gsap.fromTo(
                 containerRef.current,
                 { opacity: 0, scale: 0.95, y: 20 },
                 { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: 'power3.out' }
-            );
-
-            // Stagger animation for each unit
-            gsap.fromTo(
-                unitsRef.current,
-                { opacity: 0, y: 20 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.6,
-                    stagger: 0.1,
-                    ease: 'power3.out',
-                    delay: 0.2
-                }
             );
         }
     }, [mounted]);
@@ -76,10 +116,10 @@ export function Countdown() {
     };
 
     const timeUnits = [
-        { label: 'DAYS', value: timeLeft.days, color: 'from-violet-500 to-purple-600' },
-        { label: 'HRS', value: timeLeft.hours, color: 'from-cyan-400 to-blue-600' },
-        { label: 'MIN', value: timeLeft.minutes, color: 'from-emerald-400 to-teal-600' },
-        { label: 'SEC', value: timeLeft.seconds, color: 'from-amber-400 to-orange-600' },
+        { label: 'DAYS', value: timeLeft.days, color: 'from-violet-500 to-purple-600', bgGlow: 'bg-violet-500' },
+        { label: 'HRS', value: timeLeft.hours, color: 'from-cyan-400 to-blue-600', bgGlow: 'bg-cyan-500' },
+        { label: 'MIN', value: timeLeft.minutes, color: 'from-emerald-400 to-teal-600', bgGlow: 'bg-emerald-500' },
+        { label: 'SEC', value: timeLeft.seconds, color: 'from-amber-400 to-orange-600', bgGlow: 'bg-amber-500' },
     ];
 
     if (!mounted) return null;
@@ -101,43 +141,47 @@ export function Countdown() {
                 <p className="text-xs sm:text-sm text-muted-foreground mt-1">Get ready for the future of crypto</p>
             </div>
 
-            {/* Countdown Units - Fully Responsive Grid */}
-            <div className="grid grid-cols-4 gap-2 sm:gap-3 lg:gap-4 w-full">
+            {/* Countdown Units with Flip Animation */}
+            <div className="grid grid-cols-4 gap-2 sm:gap-3 lg:gap-4 w-full max-w-3xl mx-auto">
                 {timeUnits.map((unit, index) => (
-                    <div
-                        key={unit.label}
-                        ref={(el) => { if (el) unitsRef.current[index] = el; }}
-                        className="group relative"
-                    >
+                    <div key={unit.label} className="group relative" style={{ perspective: '500px' }}>
                         {/* Glow effect */}
-                        <div className={`absolute inset-0 bg-gradient-to-br ${unit.color} rounded-xl sm:rounded-2xl opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-300`} />
+                        <div className={`absolute -inset-1 ${unit.bgGlow} rounded-xl sm:rounded-2xl opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-300`} />
 
                         {/* Main card */}
-                        <div className="relative bg-card/80 backdrop-blur-sm border border-primary/20 rounded-xl sm:rounded-2xl p-2 sm:p-3 lg:p-4 text-center overflow-hidden">
+                        <div className="relative bg-card/90 backdrop-blur-sm border border-primary/20 rounded-xl sm:rounded-2xl overflow-hidden">
                             {/* Shine effect */}
                             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
 
-                            {/* Value */}
-                            <div className={`text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black bg-gradient-to-br ${unit.color} bg-clip-text text-transparent leading-none`}>
-                                {formatNumber(unit.value)}
+                            {/* Number Display with Flip */}
+                            <div className="relative py-3 sm:py-4 md:py-5 px-2" style={{ transformStyle: 'preserve-3d' }}>
+                                <div
+                                    ref={(el) => { numberRefs.current[index] = el; }}
+                                    className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black bg-gradient-to-br ${unit.color} bg-clip-text text-transparent leading-none text-center`}
+                                    style={{ transformStyle: 'preserve-3d' }}
+                                >
+                                    {formatNumber(unit.value)}
+                                </div>
                             </div>
 
                             {/* Label */}
-                            <div className={`mt-1 sm:mt-2 text-[9px] xs:text-[10px] sm:text-xs font-bold tracking-wider uppercase bg-gradient-to-r ${unit.color} bg-clip-text text-transparent`}>
-                                {unit.label}
+                            <div className="pb-2 sm:pb-3">
+                                <div className={`text-[9px] xs:text-[10px] sm:text-xs font-bold tracking-wider uppercase bg-gradient-to-r ${unit.color} bg-clip-text text-transparent text-center`}>
+                                    {unit.label}
+                                </div>
                             </div>
 
-                            {/* Bottom gradient */}
+                            {/* Bottom shadow */}
                             <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none" />
                         </div>
                     </div>
                 ))}
             </div>
 
-            {/* Separating colons - visible on larger screens */}
-            <div className="hidden md:flex absolute top-1/2 left-0 right-0 justify-around px-[12%] pointer-events-none" style={{ marginTop: '2rem' }}>
+            {/* Decorative colons */}
+            <div className="hidden md:flex absolute top-1/2 left-0 right-0 justify-around pointer-events-none px-[11%]" style={{ marginTop: '0.5rem' }}>
                 {[0, 1, 2].map((i) => (
-                    <div key={i} className="flex flex-col gap-1.5">
+                    <div key={i} className="flex flex-col gap-2">
                         <div className="w-1.5 h-1.5 rounded-full bg-primary/60 animate-pulse" />
                         <div className="w-1.5 h-1.5 rounded-full bg-primary/60 animate-pulse" style={{ animationDelay: '0.5s' }} />
                     </div>

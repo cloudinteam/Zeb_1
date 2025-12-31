@@ -29,7 +29,7 @@ const stats = [
     },
     {
         icon: Coins,
-        value: 100,
+        value: 10,
         suffix: 'M',
         label: 'Total Supply',
         color: '#22C55E',

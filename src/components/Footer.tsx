@@ -178,7 +178,7 @@ export function Footer() {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-sm text-muted-foreground flex items-center gap-1">
-                        © 2025 ZEBCOIN. Made with <Heart className="w-4 h-4 text-red-500 fill-red-500" /> for the crypto community.
+                        © 2026 ZEBCOIN. Made with <Heart className="w-4 h-4 text-red-500 fill-red-500" /> for the crypto community.
                     </p>
                     <div className="flex items-center gap-4">
                         <a

@@ -218,7 +218,7 @@ export function Partners() {
                     <p className="text-center text-sm text-muted-foreground mt-8 relative z-10">
                         <span className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-2">
                             <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                            More partnerships coming in 2025
+                            More partnerships coming in 2026
                         </span>
                     </p>
                 </div>

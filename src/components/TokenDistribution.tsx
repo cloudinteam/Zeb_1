@@ -16,7 +16,7 @@ const tokenInfo = [
     { label: 'Symbol', value: 'ZCN', icon: '🪙' },
     { label: 'Type', value: 'BEP20', icon: '🔗' },
     { label: 'Initial Value', value: '$0.3', icon: '💰' },
-    { label: 'Total Supply', value: '10,00,00,000', icon: '📊' },
+    { label: 'Total Supply', value: '10,000,000', icon: '📊' },
 ];
 
 const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: { payload: typeof tokenData[0] }[] }) => {

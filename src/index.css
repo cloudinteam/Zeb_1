@@ -273,3 +273,22 @@
 .animate-shimmer {
   animation: shimmer 3s ease-in-out infinite;
 }
+
+/* Flip Card Animation for Countdown - Simplified for Better Visibility */
+.countdown-card.flip-trigger {
+  animation: cardFlip 0.6s ease-in-out;
+}
+
+@keyframes cardFlip {
+  0% {
+    transform: scale(1) rotateX(0deg);
+  }
+
+  50% {
+    transform: scale(1.05) rotateX(10deg);
+  }
+
+  100% {
+    transform: scale(1) rotateX(0deg);
+  }
+}
