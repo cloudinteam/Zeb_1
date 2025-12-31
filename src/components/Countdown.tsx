@@ -141,49 +141,50 @@ export function Countdown() {
                 <p className="text-xs sm:text-sm text-muted-foreground mt-1">Get ready for the future of crypto</p>
             </div>
 
-            {/* Countdown Units with Flip Animation */}
-            <div className="grid grid-cols-4 gap-2 sm:gap-3 lg:gap-4 w-full max-w-3xl mx-auto">
+            {/* Countdown Units with Flip Animation and Inline Colons */}
+            <div className="flex items-center justify-center gap-1 sm:gap-2 lg:gap-3 w-full max-w-3xl mx-auto">
                 {timeUnits.map((unit, index) => (
-                    <div key={unit.label} className="group relative" style={{ perspective: '500px' }}>
-                        {/* Glow effect */}
-                        <div className={`absolute -inset-1 ${unit.bgGlow} rounded-xl sm:rounded-2xl opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-300`} />
+                    <div key={unit.label} className="flex items-center">
+                        {/* Time Box */}
+                        <div className="group relative" style={{ perspective: '500px' }}>
+                            {/* Glow effect */}
+                            <div className={`absolute -inset-1 ${unit.bgGlow} rounded-xl sm:rounded-2xl opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-300`} />
 
-                        {/* Main card */}
-                        <div className="relative bg-card/90 backdrop-blur-sm border border-primary/20 rounded-xl sm:rounded-2xl overflow-hidden">
-                            {/* Shine effect */}
-                            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+                            {/* Main card */}
+                            <div className="relative bg-card/90 backdrop-blur-sm border border-primary/20 rounded-xl sm:rounded-2xl overflow-hidden min-w-[60px] sm:min-w-[80px] md:min-w-[100px] lg:min-w-[120px]">
+                                {/* Shine effect */}
+                                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
 
-                            {/* Number Display with Flip */}
-                            <div className="relative py-3 sm:py-4 md:py-5 px-2" style={{ transformStyle: 'preserve-3d' }}>
-                                <div
-                                    ref={(el) => { numberRefs.current[index] = el; }}
-                                    className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black bg-gradient-to-br ${unit.color} bg-clip-text text-transparent leading-none text-center`}
-                                    style={{ transformStyle: 'preserve-3d' }}
-                                >
-                                    {formatNumber(unit.value)}
+                                {/* Number Display with Flip */}
+                                <div className="relative py-3 sm:py-4 md:py-5 px-2" style={{ transformStyle: 'preserve-3d' }}>
+                                    <div
+                                        ref={(el) => { numberRefs.current[index] = el; }}
+                                        className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black bg-gradient-to-br ${unit.color} bg-clip-text text-transparent leading-none text-center`}
+                                        style={{ transformStyle: 'preserve-3d' }}
+                                    >
+                                        {formatNumber(unit.value)}
+                                    </div>
                                 </div>
-                            </div>
 
-                            {/* Label */}
-                            <div className="pb-2 sm:pb-3">
-                                <div className={`text-[9px] xs:text-[10px] sm:text-xs font-bold tracking-wider uppercase bg-gradient-to-r ${unit.color} bg-clip-text text-transparent text-center`}>
-                                    {unit.label}
+                                {/* Label */}
+                                <div className="pb-2 sm:pb-3">
+                                    <div className={`text-[8px] sm:text-[10px] md:text-xs font-bold tracking-wider uppercase bg-gradient-to-r ${unit.color} bg-clip-text text-transparent text-center`}>
+                                        {unit.label}
+                                    </div>
                                 </div>
-                            </div>
 
-                            {/* Bottom shadow */}
-                            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none" />
+                                {/* Bottom shadow */}
+                                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none" />
+                            </div>
                         </div>
-                    </div>
-                ))}
-            </div>
 
-            {/* Decorative colons */}
-            <div className="hidden md:flex absolute top-1/2 left-0 right-0 justify-around pointer-events-none px-[11%]" style={{ marginTop: '0.5rem' }}>
-                {[0, 1, 2].map((i) => (
-                    <div key={i} className="flex flex-col gap-2">
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary/60 animate-pulse" />
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary/60 animate-pulse" style={{ animationDelay: '0.5s' }} />
+                        {/* Colon Separator - shown after each box except the last */}
+                        {index < 3 && (
+                            <div className="flex flex-col items-center justify-center gap-1.5 sm:gap-2 mx-1 sm:mx-2 lg:mx-3">
+                                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary/70 animate-pulse" />
+                                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary/70 animate-pulse" style={{ animationDelay: '0.5s' }} />
+                            </div>
+                        )}
                     </div>
                 ))}
             </div>
