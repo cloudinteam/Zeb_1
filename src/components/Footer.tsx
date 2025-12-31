@@ -1,4 +1,4 @@
-import { Twitter, Send, ExternalLink, ArrowUp, Heart, Globe, Mail } from 'lucide-react';
+import { Twitter, Send, ExternalLink, ArrowUp, Heart, Globe, Mail, Instagram } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -11,13 +11,14 @@ const footerLinks = {
         { name: 'FAQ', href: '#faq' },
     ],
     resources: [
-        { name: 'White Paper', href: 'https://zebcoin.ai/assets/img/Zebcoin%20-%20Whitepaper.pdf', external: true },
+        { name: 'White Paper', href: '#', external: false },
         { name: 'PancakeSwap', href: 'https://pancakeswap.finance/', external: true },
         { name: 'BscScan', href: 'https://bscscan.com/', external: true },
     ],
     social: [
-        { name: 'Twitter', icon: Twitter, href: '#', color: '#1DA1F2' },
-        { name: 'Telegram', icon: Send, href: '#', color: '#0088cc' },
+        { name: 'Twitter', icon: Twitter, href: 'https://x.com/zeb_coin', color: '#1DA1F2' },
+        { name: 'Telegram', icon: Send, href: 'https://t.me/zebcoin_official', color: '#0088cc' },
+        { name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/zebcoin_official', color: '#E4405F' },
     ],
 };
 
@@ -62,7 +63,7 @@ export function Footer() {
                                 className="gap-2 border-primary/30 hover:border-primary hover:bg-primary/10"
                                 asChild
                             >
-                                <a href="#" target="_blank" rel="noopener noreferrer">
+                                <a href="https://x.com/zeb_coin" target="_blank" rel="noopener noreferrer">
                                     <Twitter className="w-5 h-5" style={{ color: '#1DA1F2' }} />
                                     Follow on Twitter
                                 </a>
@@ -72,7 +73,7 @@ export function Footer() {
                                 className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground"
                                 asChild
                             >
-                                <a href="#" target="_blank" rel="noopener noreferrer">
+                                <a href="https://t.me/zebcoin_official" target="_blank" rel="noopener noreferrer">
                                     <Send className="w-5 h-5" />
                                     Join Telegram
                                 </a>

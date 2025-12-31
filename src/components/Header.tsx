@@ -53,7 +53,7 @@ export function Header() {
                     <div className="hidden md:flex items-center gap-3">
                         <ThemeToggle />
                         <Button variant="outline" size="sm" asChild>
-                            <a href="https://zebcoin.ai/assets/img/Zebcoin%20-%20Whitepaper.pdf" target="_blank" rel="noopener noreferrer">
+                            <a href="#">
                                 White Paper
                             </a>
                         </Button>
@@ -103,7 +103,7 @@ export function Header() {
                                     </div>
                                     <div className="flex flex-col gap-3 pt-4 border-t border-border">
                                         <Button variant="outline" className="w-full" asChild>
-                                            <a href="https://zebcoin.ai/assets/img/Zebcoin%20-%20Whitepaper.pdf" target="_blank" rel="noopener noreferrer">
+                                            <a href="#">
                                                 White Paper
                                             </a>
                                         </Button>
