@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const roadmapData = [
     {
-        quarter: 'Q1 2025',
+        quarter: 'Q1 2026',
         title: 'Foundation',
         items: ['Website Launch', 'Social Media Launch', 'IDO Launch'],
         status: 'current',
@@ -17,7 +17,7 @@ const roadmapData = [
         color: '#FFD700',
     },
     {
-        quarter: 'Q2 2025',
+        quarter: 'Q2 2026',
         title: 'Exchange Integration',
         items: ['Exchange Launch DEX/CEX', 'USDT/BNB Trading Pair'],
         status: 'upcoming',
@@ -25,7 +25,7 @@ const roadmapData = [
         color: '#FFA500',
     },
     {
-        quarter: 'Q3 2025',
+        quarter: 'Q3 2026',
         title: 'Community Growth',
         items: ['Achieve 100K Followers', 'Twitter/Instagram/Facebook'],
         status: 'upcoming',
@@ -33,7 +33,7 @@ const roadmapData = [
         color: '#FF8C00',
     },
     {
-        quarter: 'Q4 2025',
+        quarter: 'Q4 2026',
         title: 'Platform Launch',
         items: ['Launchpad in ZEBCOIN PLATFORM'],
         status: 'upcoming',
@@ -41,7 +41,7 @@ const roadmapData = [
         color: '#DAA520',
     },
     {
-        quarter: 'Q1 2026',
+        quarter: 'Q1 2027',
         title: 'AI Identity Platform',
         items: ['Launch DIVP with AI', 'Decentralized Identity Verification', 'Own ZEB-AI Model'],
         status: 'upcoming',
@@ -49,7 +49,7 @@ const roadmapData = [
         color: '#FFD700',
     },
     {
-        quarter: 'Q3 2026',
+        quarter: 'Q3 2027',
         title: 'Blockchain Infrastructure',
         items: ['Own DEX Launch', 'Explorer Launch'],
         status: 'upcoming',
@@ -57,7 +57,7 @@ const roadmapData = [
         color: '#FFA500',
     },
     {
-        quarter: 'Q1 2027',
+        quarter: 'Q1 2028',
         title: 'Payment System',
         items: ['Smart Contract Payment System', 'Integrated API Launch', 'Crypto Pairs Customization'],
         status: 'upcoming',
@@ -65,7 +65,7 @@ const roadmapData = [
         color: '#FF8C00',
     },
     {
-        quarter: 'Q3 2027',
+        quarter: 'Q3 2028',
         title: 'IP Marketplace',
         items: ['BBIPM Launch', 'Blockchain IP Marketplace', 'Tokenize Patents/Copyrights', 'Decentralized Arbitration'],
         status: 'upcoming',
@@ -73,7 +73,7 @@ const roadmapData = [
         color: '#DAA520',
     },
     {
-        quarter: 'Q1 2028',
+        quarter: 'Q1 2029',
         title: 'Global Exchange',
         items: ['ZEB Exchange in 7 Countries', 'Regulatory Licenses', 'AI DeFi Microlending', 'Reputation Scoring'],
         status: 'upcoming',
@@ -81,7 +81,7 @@ const roadmapData = [
         color: '#FFD700',
     },
     {
-        quarter: 'Q3 2028',
+        quarter: 'Q3 2029',
         title: 'Green Energy & Prediction',
         items: ['GET - Green Energy Token', 'Project Investment Monitoring', 'Decentralized Prediction Market'],
         status: 'upcoming',
@@ -208,7 +208,7 @@ export function Roadmap() {
                         <span className="text-primary">Our Sponsored Roadmap</span>
                         <br />
                         <span className="bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
-                            2025 - 2028
+                            2026 - 2029
                         </span>
                     </h2>
                     <p className="text-lg text-muted-foreground">
