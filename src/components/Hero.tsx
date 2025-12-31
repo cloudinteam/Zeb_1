@@ -1,37 +1,24 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, FileText, Sparkles, Zap, Copy, Check, Clock } from 'lucide-react';
+import { ArrowRight, FileText, Sparkles, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { CoinScene } from '@/components/three/CoinScene';
 import { ParticleNetwork } from '@/components/three/ParticleNetwork';
-
-
-const CONTRACT_ADDRESS = '0x7B1AF1bf711caF5A53C27b15171709CA67f60da2d';
+import { Countdown } from '@/components/Countdown';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function Hero() {
-    const [copied, setCopied] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
     const badgeRef = useRef<HTMLDivElement>(null);
     const headingRef = useRef<HTMLHeadingElement>(null);
     const subtitleRef = useRef<HTMLParagraphElement>(null);
     const statsRef = useRef<HTMLDivElement>(null);
-    const contractRef = useRef<HTMLDivElement>(null);
+    const countdownRef = useRef<HTMLDivElement>(null);
     const ctaRef = useRef<HTMLDivElement>(null);
     const infoRef = useRef<HTMLDivElement>(null);
-
-    const copyToClipboard = async () => {
-        try {
-            await navigator.clipboard.writeText(CONTRACT_ADDRESS);
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
-        } catch (err) {
-            console.error('Failed to copy:', err);
-        }
-    };
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -40,7 +27,7 @@ export function Hero() {
                 badgeRef.current,
                 subtitleRef.current,
                 statsRef.current,
-                contractRef.current,
+                countdownRef.current,
                 ctaRef.current,
                 infoRef.current
             ], {
@@ -89,8 +76,8 @@ export function Hero() {
                     ease: 'power3.out'
                 }, '-=0.3');
 
-                // Contract address
-                tl.to(contractRef.current, {
+                // Countdown animation
+                tl.to(countdownRef.current, {
                     opacity: 1,
                     y: 0,
                     duration: 0.5,
@@ -206,7 +193,7 @@ export function Hero() {
                                     <Zap className="w-4 h-4 text-primary" />
                                     <span className="text-sm text-muted-foreground">Total Supply</span>
                                 </div>
-                                <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground">100M ZCN</p>
+                                <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground">10M ZCN</p>
                             </div>
                             <div className="bg-card/50 backdrop-blur-sm border border-primary/20 rounded-xl px-4 sm:px-6 py-4">
                                 <div className="flex items-center gap-2 mb-1">
@@ -217,44 +204,9 @@ export function Hero() {
                             </div>
                         </div>
 
-                        {/* Smart Contract Audit */}
-                        <div ref={contractRef} className="bg-gradient-to-r from-orange-500/10 via-secondary/30 to-primary/10 backdrop-blur-sm border border-orange-500/30 rounded-2xl p-4 sm:p-5 mb-10 max-w-xl mx-auto lg:mx-0">
-                            <div className="flex items-center gap-3 mb-3">
-                                <div className="w-10 h-10 rounded-xl bg-orange-500/20 flex items-center justify-center">
-                                    <Clock className="w-5 h-5 text-orange-500" />
-                                </div>
-                                <div>
-                                    <h3 className="font-bold text-sm sm:text-base">Smart Contract Audit</h3>
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-xs text-orange-500 font-medium">In Progress</span>
-                                        <span className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                                <code className="flex-1 text-xs font-mono text-muted-foreground bg-background/70 border border-primary/20 px-3 py-2 rounded-xl break-all">
-                                    {CONTRACT_ADDRESS}
-                                </code>
-                                <Button
-                                    onClick={copyToClipboard}
-                                    variant="outline"
-                                    size="sm"
-                                    className={`rounded-xl border-primary/20 hover:border-primary hover:bg-primary/10 transition-all ${copied ? 'border-green-500 bg-green-500/10' : ''}`}
-                                >
-                                    {copied ? (
-                                        <>
-                                            <Check className="w-4 h-4 mr-2 text-green-500" />
-                                            <span className="text-green-500">Copied!</span>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <Copy className="w-4 h-4 mr-2" />
-                                            Copy
-                                        </>
-                                    )}
-                                </Button>
-                            </div>
+                        {/* Ultra Stunning Countdown */}
+                        <div ref={countdownRef} className="mb-10 max-w-2xl mx-auto lg:mx-0">
+                            <Countdown />
                         </div>
 
                         {/* CTA Buttons */}

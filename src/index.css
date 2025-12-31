@@ -212,3 +212,64 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Countdown Animations */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(100%) scale(0);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+    transform: translateY(80%) scale(1);
+  }
+
+  90% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateY(-100%) scale(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.bg-gradient-conic {
+  background: conic-gradient(from 0deg, var(--tw-gradient-stops));
+}
+
+/* Coming Soon Shimmer Animation */
+@keyframes shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: -100% 50%;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+}
