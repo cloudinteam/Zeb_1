@@ -4,12 +4,8 @@ import { Badge } from '@/components/ui/badge';
 import { Coins, ChartPie } from 'lucide-react';
 
 const tokenData = [
-    { name: 'Public Offering', value: 55, color: '#FFD700', description: 'Available for public purchase' },
-    { name: 'Team & Investors', value: 30, color: '#FFA500', description: 'Vested over 24 months' },
-    { name: 'IDO Launchpad', value: 10, color: '#FF8C00', description: 'Initial DEX offering' },
-    { name: 'Marketing', value: 2, color: '#DAA520', description: 'Community growth' },
-    { name: 'Airdrop', value: 2, color: '#B8860B', description: 'Community rewards' },
-    { name: 'Legal & Reserve', value: 1, color: '#CD853F', description: 'Compliance & treasury' },
+    { name: 'Team & Investors', value: 20, color: '#FFA500', description: 'Vested over 24 months' },
+    { name: 'IDO Launchpad', value: 80, color: '#FF8C00', description: 'Initial DEX offering' },
 ];
 
 const tokenInfo = [

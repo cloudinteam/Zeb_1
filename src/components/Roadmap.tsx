@@ -205,7 +205,7 @@ export function Roadmap() {
                         Our Journey
                     </Badge>
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-                        <span className="text-primary">Our Roadmap</span>
+                        <span className="text-primary">Our Sponsored Roadmap</span>
                         <br />
                         <span className="bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
                             2025 - 2028

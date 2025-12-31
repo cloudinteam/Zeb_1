@@ -142,7 +142,7 @@ export function WhyZebcoin() {
                         </span>
                     </h2>
                     <p className="text-lg text-muted-foreground">
-                        Not just another token. ZEBCOIN combines AI, decentralized identity, and
+                        Not just another token. ZEBCOIN Supports AI Projects, decentralized identity, and
                         sustainability for a new paradigm in blockchain technology.
                     </p>
                 </div>

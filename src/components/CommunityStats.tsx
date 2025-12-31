@@ -12,6 +12,7 @@ const stats = [
         suffix: '+',
         label: 'Twitter Followers',
         color: '#1DA1F2',
+        yetToReach: true,
     },
     {
         icon: Send,
@@ -19,6 +20,7 @@ const stats = [
         suffix: '+',
         label: 'Telegram Members',
         color: '#0088cc',
+        yetToReach: true,
     },
     {
         icon: Users,
@@ -183,6 +185,16 @@ export function CommunityStats() {
                             <div className="relative z-10 text-xs lg:text-sm text-muted-foreground">
                                 {stat.label}
                             </div>
+
+                            {/* Yet To Reach badge for Twitter and Telegram */}
+                            {stat.yetToReach && (
+                                <div className="relative z-10 mt-2 group/badge">
+                                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-green-500/10 text-green-500 border border-green-500/30 transition-all duration-300 hover:bg-green-500/20 hover:scale-105 hover:shadow-lg hover:shadow-green-500/20 animate-pulse">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-ping"></span>
+                                        Yet To Reach
+                                    </span>
+                                </div>
+                            )}
                         </div>
                     ))}
                 </div>

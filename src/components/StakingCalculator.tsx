@@ -9,10 +9,10 @@ import { Calculator, TrendingUp, Clock, Coins, Sparkles } from 'lucide-react';
 gsap.registerPlugin(ScrollTrigger);
 
 const stakingTiers = [
-    { days: 30, apy: 12, label: '30 Days' },
-    { days: 90, apy: 18, label: '90 Days' },
-    { days: 180, apy: 25, label: '180 Days' },
-    { days: 365, apy: 35, label: '365 Days' },
+    { days: 30, apy: 9.9, dailyRate: 0.33, label: '1 Month' },
+    { days: 60, apy: 19.8, dailyRate: 0.33, label: '2 Months' },
+    { days: 90, apy: 29.7, dailyRate: 0.33, label: '3 Months' },
+    { days: 180, apy: 59.4, dailyRate: 0.33, label: '6 Months' },
 ];
 
 export function StakingCalculator() {
@@ -21,14 +21,15 @@ export function StakingCalculator() {
     const calculatorRef = useRef<HTMLDivElement>(null);
 
     const [amount, setAmount] = useState<string>('1000');
-    const [selectedTier, setSelectedTier] = useState(1); // 90 days default
+    const [selectedTier, setSelectedTier] = useState(0); // 180 days (only option)
     const [showResults, setShowResults] = useState(false);
 
     const calculateRewards = () => {
         const principal = parseFloat(amount) || 0;
         const tier = stakingTiers[selectedTier];
-        const dailyRate = tier.apy / 100 / 365;
-        const rewards = principal * dailyRate * tier.days;
+        // 0.33% daily rate calculation
+        const dailyRateDecimal = tier.dailyRate / 100;
+        const rewards = principal * dailyRateDecimal * tier.days;
         const total = principal + rewards;
         return { rewards, total, apy: tier.apy, days: tier.days };
     };
@@ -106,8 +107,7 @@ export function StakingCalculator() {
                         <span className="text-primary">Rewards</span>
                     </h2>
                     <p className="text-lg text-muted-foreground">
-                        Calculate potential staking rewards with our interactive tool.
-                        Higher lock periods earn higher APY.
+                        Calculate potential staking rewards with flexible locking periods from 2 weeks to 6 months.
                     </p>
                 </div>
 
@@ -157,12 +157,12 @@ export function StakingCalculator() {
                                                     key={index}
                                                     onClick={() => setSelectedTier(index)}
                                                     className={`p-4 rounded-xl border transition-all ${selectedTier === index
-                                                            ? 'border-primary bg-primary/10 shadow-lg shadow-primary/20'
-                                                            : 'border-primary/20 bg-background/50 hover:border-primary/40'
+                                                        ? 'border-primary bg-primary/10 shadow-lg shadow-primary/20'
+                                                        : 'border-primary/20 bg-background/50 hover:border-primary/40'
                                                         }`}
                                                 >
                                                     <div className="font-bold">{tier.label}</div>
-                                                    <div className="text-primary text-lg font-bold">{tier.apy}% APY</div>
+                                                    <div className="text-primary text-lg font-bold">{tier.apy}% MPY</div>
                                                 </button>
                                             ))}
                                         </div>
@@ -192,7 +192,7 @@ export function StakingCalculator() {
                                             </div>
 
                                             <div className="result-value bg-background/50 rounded-xl p-4 border border-primary/10">
-                                                <div className="text-sm text-muted-foreground">APY Rate</div>
+                                                <div className="text-sm text-muted-foreground">MPY Rate</div>
                                                 <div className="text-2xl font-bold text-green-500">{results.apy}%</div>
                                             </div>
 
