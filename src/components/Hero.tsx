@@ -277,24 +277,41 @@ export function Hero() {
                         {/* Smart Contract Address */}
                         <div ref={contractRef} className="mt-8 w-full max-w-xl mx-auto lg:mx-0">
                             <div className="relative group">
-                                {/* Glowing background effect */}
-                                <div className="absolute -inset-1 bg-gradient-to-r from-primary/30 via-primary/50 to-primary/30 rounded-2xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity" />
+                                {/* Animated glowing border */}
+                                <div className="absolute -inset-0.5 bg-gradient-to-r from-green-500 via-primary to-green-500 rounded-2xl opacity-60 blur-sm group-hover:opacity-100 transition-opacity duration-500 animate-contract-border bg-[length:200%_200%]" />
 
                                 {/* Main container */}
-                                <div className="relative bg-card/80 backdrop-blur-xl border-2 border-primary/40 rounded-2xl p-4 sm:p-5">
+                                <div className="relative bg-card/95 backdrop-blur-xl border border-primary/30 rounded-2xl p-4 sm:p-5 overflow-hidden animate-contract-glow">
+                                    {/* Scanning line animation */}
+                                    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                                        <div className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-green-500/20 to-transparent animate-scan" />
+                                    </div>
+
                                     {/* Label */}
-                                    <div className="flex items-center justify-between mb-3">
+                                    <div className="relative flex items-center justify-between mb-3">
                                         <div className="flex items-center gap-2">
-                                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                                            <span className="text-sm font-semibold text-primary">Smart Contract Address</span>
+                                            {/* Double dot animation */}
+                                            <div className="relative">
+                                                <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-ping absolute opacity-75" />
+                                                <div className="w-2.5 h-2.5 bg-green-500 rounded-full relative" />
+                                            </div>
+                                            <span className="text-sm font-semibold text-primary">Smart Contract</span>
                                         </div>
-                                        <span className="text-xs text-muted-foreground bg-primary/10 px-2 py-0.5 rounded-full">BSC Mainnet</span>
+                                        <div className="flex items-center gap-1.5">
+                                            <span className="text-[10px] text-green-500 font-medium bg-green-500/10 px-2 py-0.5 rounded-full border border-green-500/30 flex items-center gap-1">
+                                                <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+                                                Verified
+                                            </span>
+                                            <span className="text-xs text-muted-foreground bg-primary/10 px-2 py-0.5 rounded-full">BSC</span>
+                                        </div>
                                     </div>
 
                                     {/* Address section */}
-                                    <div className="flex items-center gap-2">
-                                        <div className="flex-1 bg-background/60 border border-primary/20 rounded-xl px-3 sm:px-4 py-2.5 overflow-hidden">
-                                            <code className="text-xs sm:text-sm font-mono text-foreground block truncate">
+                                    <div className="relative flex items-center gap-2">
+                                        <div className="flex-1 relative bg-background/80 border border-primary/20 rounded-xl px-3 sm:px-4 py-2.5 overflow-hidden group/address hover:border-primary/40 transition-colors">
+                                            {/* Shimmer on hover */}
+                                            <div className="absolute inset-0 -translate-x-full group-hover/address:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                                            <code className="relative text-xs sm:text-sm font-mono text-foreground block truncate tracking-wider">
                                                 {CONTRACT_ADDRESS}
                                             </code>
                                         </div>
@@ -305,13 +322,13 @@ export function Hero() {
                                             size="icon"
                                             onClick={copyToClipboard}
                                             className={`shrink-0 h-10 w-10 rounded-xl border-2 transition-all duration-300 ${copied
-                                                ? 'bg-green-500/20 border-green-500 text-green-500 scale-110'
+                                                ? 'bg-green-500/20 border-green-500 text-green-500 scale-110 shadow-[0_0_20px_rgba(34,197,94,0.4)]'
                                                 : 'border-primary/40 hover:border-primary hover:bg-primary/20 hover:scale-105'
                                                 }`}
                                             aria-label="Copy contract address"
                                         >
                                             {copied ? (
-                                                <Check className="h-5 w-5 animate-in zoom-in-50 duration-300" />
+                                                <Check className="h-5 w-5 animate-in zoom-in-50 spin-in-180 duration-300" />
                                             ) : (
                                                 <Copy className="h-5 w-5" />
                                             )}
@@ -337,9 +354,9 @@ export function Hero() {
 
                                     {/* Copied feedback */}
                                     {copied && (
-                                        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 animate-in fade-in-0 slide-in-from-top-2 duration-300">
-                                            <span className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-green-500 text-white text-xs font-semibold rounded-full shadow-lg">
-                                                <Check className="h-3.5 w-3.5" />
+                                        <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 animate-in fade-in-0 slide-in-from-top-4 zoom-in-95 duration-300">
+                                            <span className="inline-flex items-center gap-2 px-4 py-2 bg-green-500 text-white text-sm font-semibold rounded-full shadow-[0_0_30px_rgba(34,197,94,0.5)]">
+                                                <Check className="h-4 w-4" />
                                                 Copied to clipboard!
                                             </span>
                                         </div>
