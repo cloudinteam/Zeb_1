@@ -14,7 +14,7 @@ const footerLinks = {
         { name: 'FAQ', href: '#faq' },
     ],
     resources: [
-        { name: 'White Paper', href: '#', external: false },
+        { name: 'White Paper', href: '/zebcoin_whitepaper_20260101151529.pdf', external: true },
         { name: 'PancakeSwap', href: 'https://pancakeswap.finance/', external: true },
         { name: 'BscScan', href: 'https://bscscan.com/', external: true },
     ],
@@ -209,8 +209,8 @@ export function Footer() {
                                 size="icon"
                                 onClick={copyToClipboard}
                                 className={`shrink-0 rounded-xl border-primary/30 transition-all duration-300 ${copied
-                                        ? 'bg-green-500/20 border-green-500/50 text-green-500 scale-110'
-                                        : 'hover:border-primary hover:bg-primary/10'
+                                    ? 'bg-green-500/20 border-green-500/50 text-green-500 scale-110'
+                                    : 'hover:border-primary hover:bg-primary/10'
                                     }`}
                                 aria-label="Copy contract address"
                             >

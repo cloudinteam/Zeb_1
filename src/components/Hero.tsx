@@ -251,7 +251,7 @@ export function Hero() {
                                 className="text-base px-8 py-6 h-auto border-primary/30 hover:bg-primary/10"
                                 asChild
                             >
-                                <a href="#">
+                                <a href="/zebcoin_whitepaper_20260101151529.pdf" target="_blank" rel="noopener noreferrer">
                                     <FileText className="mr-2 w-5 h-5" />
                                     Read White Paper
                                 </a>
