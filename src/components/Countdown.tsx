@@ -142,24 +142,24 @@ export function Countdown() {
             </div>
 
             {/* Countdown Units with Flip Animation and Inline Colons */}
-            <div className="flex items-center justify-center gap-1 sm:gap-2 lg:gap-3 w-full max-w-3xl mx-auto">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 w-full">
                 {timeUnits.map((unit, index) => (
                     <div key={unit.label} className="flex items-center">
                         {/* Time Box */}
                         <div className="group relative" style={{ perspective: '500px' }}>
                             {/* Glow effect */}
-                            <div className={`absolute -inset-1 ${unit.bgGlow} rounded-xl sm:rounded-2xl opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-300`} />
+                            <div className={`absolute -inset-1 ${unit.bgGlow} rounded-lg sm:rounded-xl opacity-20 blur-lg group-hover:opacity-40 transition-opacity duration-300`} />
 
                             {/* Main card */}
-                            <div className="relative bg-card/90 backdrop-blur-sm border border-primary/20 rounded-xl sm:rounded-2xl overflow-hidden min-w-[60px] sm:min-w-[80px] md:min-w-[100px] lg:min-w-[120px]">
+                            <div className="relative bg-card/90 backdrop-blur-sm border border-primary/20 rounded-lg sm:rounded-xl overflow-hidden w-[56px] sm:w-[70px] md:w-[85px] lg:w-[100px]">
                                 {/* Shine effect */}
                                 <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
 
                                 {/* Number Display with Flip */}
-                                <div className="relative py-3 sm:py-4 md:py-5 px-2" style={{ transformStyle: 'preserve-3d' }}>
+                                <div className="relative py-2 sm:py-3 md:py-4 px-1" style={{ transformStyle: 'preserve-3d' }}>
                                     <div
                                         ref={(el) => { numberRefs.current[index] = el; }}
-                                        className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black bg-gradient-to-br ${unit.color} bg-clip-text text-transparent leading-none text-center`}
+                                        className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black bg-gradient-to-br ${unit.color} bg-clip-text text-transparent leading-none text-center`}
                                         style={{ transformStyle: 'preserve-3d' }}
                                     >
                                         {formatNumber(unit.value)}
@@ -167,8 +167,8 @@ export function Countdown() {
                                 </div>
 
                                 {/* Label */}
-                                <div className="pb-2 sm:pb-3">
-                                    <div className={`text-[8px] sm:text-[10px] md:text-xs font-bold tracking-wider uppercase bg-gradient-to-r ${unit.color} bg-clip-text text-transparent text-center`}>
+                                <div className="pb-1.5 sm:pb-2">
+                                    <div className={`text-[7px] sm:text-[9px] md:text-[10px] font-bold tracking-wider uppercase bg-gradient-to-r ${unit.color} bg-clip-text text-transparent text-center`}>
                                         {unit.label}
                                     </div>
                                 </div>
@@ -180,9 +180,9 @@ export function Countdown() {
 
                         {/* Colon Separator - shown after each box except the last */}
                         {index < 3 && (
-                            <div className="flex flex-col items-center justify-center gap-1.5 sm:gap-2 mx-1 sm:mx-2 lg:mx-3">
-                                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary/70 animate-pulse" />
-                                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary/70 animate-pulse" style={{ animationDelay: '0.5s' }} />
+                            <div className="flex flex-col items-center justify-center gap-1 mx-1 sm:mx-1.5">
+                                <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-primary/70 animate-pulse" />
+                                <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-primary/70 animate-pulse" style={{ animationDelay: '0.5s' }} />
                             </div>
                         )}
                     </div>
