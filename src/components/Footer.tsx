@@ -1,7 +1,10 @@
-import { Twitter, Send, ExternalLink, ArrowUp, Heart, Globe, Mail, Instagram } from 'lucide-react';
+import { useState } from 'react';
+import { Twitter, Send, ExternalLink, ArrowUp, Heart, Globe, Mail, Instagram, Copy, Check, FileCode } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+
+const CONTRACT_ADDRESS = '0x32Aa387310D7410Dbe3FE63b18aeD42065E520a0';
 
 const footerLinks = {
     product: [
@@ -23,8 +26,20 @@ const footerLinks = {
 };
 
 export function Footer() {
+    const [copied, setCopied] = useState(false);
+
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const copyToClipboard = async () => {
+        try {
+            await navigator.clipboard.writeText(CONTRACT_ADDRESS);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            console.error('Failed to copy:', err);
+        }
     };
 
     return (
@@ -169,6 +184,67 @@ export function Footer() {
                             ))}
                         </ul>
                     </div>
+                </div>
+
+                {/* Smart Contract Section */}
+                <div className="mt-10 p-6 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 border border-primary/20 rounded-2xl">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                        <div className="flex items-center gap-3">
+                            <div className="p-2.5 bg-primary/20 rounded-xl">
+                                <FileCode className="w-5 h-5 text-primary" />
+                            </div>
+                            <div>
+                                <h4 className="font-semibold text-sm text-foreground">Smart Contract Address</h4>
+                                <p className="text-xs text-muted-foreground">BSC Network</p>
+                            </div>
+                        </div>
+                        <div className="flex items-center gap-2 w-full md:w-auto">
+                            <div className="flex-1 md:flex-none flex items-center gap-2 px-4 py-2.5 bg-background/50 border border-primary/20 rounded-xl">
+                                <code className="text-xs sm:text-sm font-mono text-foreground truncate max-w-[200px] sm:max-w-none">
+                                    {CONTRACT_ADDRESS}
+                                </code>
+                            </div>
+                            <Button
+                                variant="outline"
+                                size="icon"
+                                onClick={copyToClipboard}
+                                className={`shrink-0 rounded-xl border-primary/30 transition-all duration-300 ${copied
+                                        ? 'bg-green-500/20 border-green-500/50 text-green-500 scale-110'
+                                        : 'hover:border-primary hover:bg-primary/10'
+                                    }`}
+                                aria-label="Copy contract address"
+                            >
+                                {copied ? (
+                                    <Check className="h-4 w-4 animate-in zoom-in-50 duration-300" />
+                                ) : (
+                                    <Copy className="h-4 w-4" />
+                                )}
+                            </Button>
+                            <Button
+                                variant="outline"
+                                size="icon"
+                                className="shrink-0 rounded-xl border-primary/30 hover:border-primary hover:bg-primary/10"
+                                asChild
+                            >
+                                <a
+                                    href={`https://bscscan.com/address/${CONTRACT_ADDRESS}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="View on BscScan"
+                                >
+                                    <ExternalLink className="h-4 w-4" />
+                                </a>
+                            </Button>
+                        </div>
+                    </div>
+                    {copied && (
+                        <div className="mt-3 text-center animate-in fade-in-0 slide-in-from-bottom-2 duration-300">
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-500/10 text-green-500 text-xs font-medium rounded-full">
+                                <Check className="h-3 w-3" />
+                                Copied to clipboard!
+                            </span>
+                        </div>
+                    )}
                 </div>
             </div>
 

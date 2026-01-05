@@ -1,7 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, FileText, Sparkles, Zap } from 'lucide-react';
+import { ArrowRight, FileText, Sparkles, Zap, Copy, Check, ExternalLink } from 'lucide-react';
+
+const CONTRACT_ADDRESS = '0x32Aa387310D7410Dbe3FE63b18aeD42065E520a0';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { CoinScene } from '@/components/three/CoinScene';
@@ -19,6 +21,19 @@ export function Hero() {
     const countdownRef = useRef<HTMLDivElement>(null);
     const ctaRef = useRef<HTMLDivElement>(null);
     const infoRef = useRef<HTMLDivElement>(null);
+    const contractRef = useRef<HTMLDivElement>(null);
+
+    const [copied, setCopied] = useState(false);
+
+    const copyToClipboard = async () => {
+        try {
+            await navigator.clipboard.writeText(CONTRACT_ADDRESS);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            console.error('Failed to copy:', err);
+        }
+    };
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -29,7 +44,8 @@ export function Hero() {
                 statsRef.current,
                 countdownRef.current,
                 ctaRef.current,
-                infoRef.current
+                infoRef.current,
+                contractRef.current
             ], {
                 opacity: 0,
                 y: 30
@@ -99,6 +115,14 @@ export function Hero() {
                     duration: 0.5,
                     ease: 'power3.out'
                 }, '-=0.2');
+
+                // Contract section
+                tl.to(contractRef.current, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    ease: 'power3.out'
+                }, '-=0.3');
             }
 
             // Floating animation for background elements
@@ -247,6 +271,80 @@ export function Hero() {
                             <div className="flex items-center gap-2">
                                 <span className="w-2 h-2 bg-primary rounded-full" />
                                 Network: BSC
+                            </div>
+                        </div>
+
+                        {/* Smart Contract Address */}
+                        <div ref={contractRef} className="mt-8 w-full max-w-xl mx-auto lg:mx-0">
+                            <div className="relative group">
+                                {/* Glowing background effect */}
+                                <div className="absolute -inset-1 bg-gradient-to-r from-primary/30 via-primary/50 to-primary/30 rounded-2xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity" />
+
+                                {/* Main container */}
+                                <div className="relative bg-card/80 backdrop-blur-xl border-2 border-primary/40 rounded-2xl p-4 sm:p-5">
+                                    {/* Label */}
+                                    <div className="flex items-center justify-between mb-3">
+                                        <div className="flex items-center gap-2">
+                                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                                            <span className="text-sm font-semibold text-primary">Smart Contract Address</span>
+                                        </div>
+                                        <span className="text-xs text-muted-foreground bg-primary/10 px-2 py-0.5 rounded-full">BSC Mainnet</span>
+                                    </div>
+
+                                    {/* Address section */}
+                                    <div className="flex items-center gap-2">
+                                        <div className="flex-1 bg-background/60 border border-primary/20 rounded-xl px-3 sm:px-4 py-2.5 overflow-hidden">
+                                            <code className="text-xs sm:text-sm font-mono text-foreground block truncate">
+                                                {CONTRACT_ADDRESS}
+                                            </code>
+                                        </div>
+
+                                        {/* Copy button */}
+                                        <Button
+                                            variant="outline"
+                                            size="icon"
+                                            onClick={copyToClipboard}
+                                            className={`shrink-0 h-10 w-10 rounded-xl border-2 transition-all duration-300 ${copied
+                                                ? 'bg-green-500/20 border-green-500 text-green-500 scale-110'
+                                                : 'border-primary/40 hover:border-primary hover:bg-primary/20 hover:scale-105'
+                                                }`}
+                                            aria-label="Copy contract address"
+                                        >
+                                            {copied ? (
+                                                <Check className="h-5 w-5 animate-in zoom-in-50 duration-300" />
+                                            ) : (
+                                                <Copy className="h-5 w-5" />
+                                            )}
+                                        </Button>
+
+                                        {/* BscScan link */}
+                                        <Button
+                                            variant="outline"
+                                            size="icon"
+                                            className="shrink-0 h-10 w-10 rounded-xl border-2 border-primary/40 hover:border-primary hover:bg-primary/20 hover:scale-105 transition-all duration-300"
+                                            asChild
+                                        >
+                                            <a
+                                                href={`https://bscscan.com/address/${CONTRACT_ADDRESS}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                aria-label="View on BscScan"
+                                            >
+                                                <ExternalLink className="h-5 w-5" />
+                                            </a>
+                                        </Button>
+                                    </div>
+
+                                    {/* Copied feedback */}
+                                    {copied && (
+                                        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 animate-in fade-in-0 slide-in-from-top-2 duration-300">
+                                            <span className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-green-500 text-white text-xs font-semibold rounded-full shadow-lg">
+                                                <Check className="h-3.5 w-3.5" />
+                                                Copied to clipboard!
+                                            </span>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>
