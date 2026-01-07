@@ -134,7 +134,15 @@ export function Countdown() {
                     <Sparkles className="w-3.5 h-3.5 text-primary animate-pulse" />
                 </div>
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold relative overflow-hidden">
-                    <span className="inline-block animate-shimmer bg-[length:200%_100%] bg-gradient-to-r from-primary via-foreground to-primary bg-clip-text text-transparent">
+                    <span
+                        className="inline-block animate-shimmer bg-[length:200%_100%] bg-gradient-to-r from-primary via-foreground to-primary"
+                        style={{
+                            WebkitBackgroundClip: 'text',
+                            backgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            color: 'transparent'
+                        }}
+                    >
                         Coming Soon
                     </span>
                 </h3>
@@ -159,8 +167,15 @@ export function Countdown() {
                                 <div className="relative py-2 sm:py-3 md:py-4 px-1" style={{ transformStyle: 'preserve-3d' }}>
                                     <div
                                         ref={(el) => { numberRefs.current[index] = el; }}
-                                        className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black bg-gradient-to-br ${unit.color} bg-clip-text text-transparent leading-none text-center`}
-                                        style={{ transformStyle: 'preserve-3d' }}
+                                        className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black bg-gradient-to-br ${unit.color} leading-none text-center`}
+                                        style={{
+                                            transformStyle: 'preserve-3d',
+                                            WebkitBackgroundClip: 'text',
+                                            backgroundClip: 'text',
+                                            WebkitTextFillColor: 'transparent',
+                                            color: 'transparent',
+                                            willChange: 'transform, opacity'
+                                        }}
                                     >
                                         {formatNumber(unit.value)}
                                     </div>
@@ -168,7 +183,15 @@ export function Countdown() {
 
                                 {/* Label */}
                                 <div className="pb-1.5 sm:pb-2">
-                                    <div className={`text-[7px] sm:text-[9px] md:text-[10px] font-bold tracking-wider uppercase bg-gradient-to-r ${unit.color} bg-clip-text text-transparent text-center`}>
+                                    <div
+                                        className={`text-[7px] sm:text-[9px] md:text-[10px] font-bold tracking-wider uppercase bg-gradient-to-r ${unit.color} text-center`}
+                                        style={{
+                                            WebkitBackgroundClip: 'text',
+                                            backgroundClip: 'text',
+                                            WebkitTextFillColor: 'transparent',
+                                            color: 'transparent'
+                                        }}
+                                    >
                                         {unit.label}
                                     </div>
                                 </div>
