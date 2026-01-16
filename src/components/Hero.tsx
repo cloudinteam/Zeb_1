@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, FileText, Sparkles, Zap, Copy, Check, ExternalLink } from 'lucide-react';
+import { ArrowRight, FileText, Sparkles, Zap, Copy, Check, ExternalLink, TrendingUp } from 'lucide-react';
 
 const CONTRACT_ADDRESS = '0x32Aa387310D7410Dbe3FE63b18aeD42065E520a0';
+const POOCOIN_URL = 'https://poocoin.app/tokens/0x32aa387310d7410dbe3fe63b18aed42065e520a0';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { CoinScene } from '@/components/three/CoinScene';
 import { ParticleNetwork } from '@/components/three/ParticleNetwork';
-import { Countdown } from '@/components/Countdown';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,7 +18,7 @@ export function Hero() {
     const headingRef = useRef<HTMLHeadingElement>(null);
     const subtitleRef = useRef<HTMLParagraphElement>(null);
     const statsRef = useRef<HTMLDivElement>(null);
-    const countdownRef = useRef<HTMLDivElement>(null);
+    const poocoinRef = useRef<HTMLDivElement>(null);
     const ctaRef = useRef<HTMLDivElement>(null);
     const infoRef = useRef<HTMLDivElement>(null);
     const contractRef = useRef<HTMLDivElement>(null);
@@ -42,7 +42,7 @@ export function Hero() {
                 badgeRef.current,
                 subtitleRef.current,
                 statsRef.current,
-                countdownRef.current,
+                poocoinRef.current,
                 ctaRef.current,
                 infoRef.current,
                 contractRef.current
@@ -92,8 +92,8 @@ export function Hero() {
                     ease: 'power3.out'
                 }, '-=0.3');
 
-                // Countdown animation
-                tl.to(countdownRef.current, {
+                // Poocoin link animation
+                tl.to(poocoinRef.current, {
                     opacity: 1,
                     y: 0,
                     duration: 0.5,
@@ -228,13 +228,8 @@ export function Hero() {
                             </div>
                         </div>
 
-                        {/* Ultra Stunning Countdown */}
-                        <div ref={countdownRef} className="mb-10 max-w-2xl mx-auto lg:mx-0">
-                            <Countdown />
-                        </div>
-
                         {/* CTA Buttons */}
-                        <div ref={ctaRef} className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                        <div ref={ctaRef} className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 mb-8">
                             <Button
                                 size="lg"
                                 className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8 py-6 h-auto group"
@@ -256,6 +251,33 @@ export function Hero() {
                                     Read White Paper
                                 </a>
                             </Button>
+                        </div>
+
+                        {/* Poocoin Chart Link */}
+                        <div ref={poocoinRef} className="max-w-2xl mx-auto lg:mx-0">
+                            <a
+                                href={POOCOIN_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group relative inline-flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-green-600/20 via-emerald-500/20 to-green-600/20 border border-green-500/40 rounded-2xl hover:border-green-400/70 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(34,197,94,0.3)]"
+                            >
+                                {/* Animated glow */}
+                                <div className="absolute -inset-0.5 bg-gradient-to-r from-green-500 via-emerald-400 to-green-500 rounded-2xl opacity-0 group-hover:opacity-30 blur-md transition-opacity duration-500" />
+
+                                {/* Icon */}
+                                <div className="relative flex items-center justify-center w-12 h-12 bg-green-500/20 rounded-xl border border-green-500/30">
+                                    <TrendingUp className="w-6 h-6 text-green-400 group-hover:scale-110 transition-transform" />
+                                </div>
+
+                                {/* Content */}
+                                <div className="relative flex flex-col">
+                                    <span className="text-lg font-bold text-green-400">View Chart on Poocoin</span>
+                                    <span className="text-sm text-muted-foreground">Live price, trades & holders</span>
+                                </div>
+
+                                {/* Arrow */}
+                                <ExternalLink className="relative w-5 h-5 text-green-400 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                            </a>
                         </div>
 
                         {/* Token Info */}

@@ -1,6 +1,7 @@
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
 import { CommunityStats } from '@/components/CommunityStats';
+import { BSCScanTransfers } from '@/components/BSCScanTransfers';
 import { Features } from '@/components/Features';
 import { WhyZebcoin } from '@/components/WhyZebcoin';
 import { StakingCalculator } from '@/components/StakingCalculator';
@@ -19,6 +20,7 @@ function App() {
       <main>
         <Hero />
         <CommunityStats />
+        <BSCScanTransfers />
         <Features />
         <WhyZebcoin />
         <StakingCalculator />
