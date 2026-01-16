@@ -53,7 +53,7 @@ export function Header() {
                     <div className="hidden md:flex items-center gap-3">
                         <ThemeTogglerButton />
                         <Button variant="outline" size="sm" asChild>
-                            <a href="#">
+                            <a href="/Zebcoin_Whitepaper.pdf" target="_blank" rel="noopener noreferrer">
                                 White Paper
                             </a>
                         </Button>
@@ -103,7 +103,7 @@ export function Header() {
                                     </div>
                                     <div className="flex flex-col gap-3 pt-4 border-t border-border">
                                         <Button variant="outline" className="w-full" asChild>
-                                            <a href="#">
+                                            <a href="/Zebcoin_Whitepaper.pdf" target="_blank" rel="noopener noreferrer">
                                                 White Paper
                                             </a>
                                         </Button>

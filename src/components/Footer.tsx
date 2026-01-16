@@ -14,7 +14,7 @@ const footerLinks = {
         { name: 'FAQ', href: '#faq' },
     ],
     resources: [
-        { name: 'White Paper', href: '/zebcoin_whitepaper_20260101151529.pdf', external: true },
+        { name: 'White Paper', href: '/Zebcoin_Whitepaper.pdf', external: true },
         { name: 'PancakeSwap', href: 'https://pancakeswap.finance/', external: true },
         { name: 'BscScan', href: 'https://bscscan.com/', external: true },
     ],

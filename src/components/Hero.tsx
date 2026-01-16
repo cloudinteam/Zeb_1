@@ -255,38 +255,66 @@ export function Hero() {
                                 className="text-base px-8 py-6 h-auto border-primary/30 hover:bg-primary/10"
                                 asChild
                             >
-                                <a href="/zebcoin_whitepaper_20260101151529.pdf" target="_blank" rel="noopener noreferrer">
+                                <a href="/Zebcoin_Whitepaper.pdf" target="_blank" rel="noopener noreferrer">
                                     <FileText className="mr-2 w-5 h-5" />
                                     Read White Paper
                                 </a>
                             </Button>
                         </div>
 
-                        {/* Poocoin Chart Link */}
+                        {/* Chart Links */}
                         <div ref={poocoinRef} className="max-w-2xl mx-auto lg:mx-0">
-                            <a
-                                href={POOCOIN_URL}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group relative inline-flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-green-600/20 via-emerald-500/20 to-green-600/20 border border-green-500/40 rounded-2xl hover:border-green-400/70 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(34,197,94,0.3)]"
-                            >
-                                {/* Animated glow */}
-                                <div className="absolute -inset-0.5 bg-gradient-to-r from-green-500 via-emerald-400 to-green-500 rounded-2xl opacity-0 group-hover:opacity-30 blur-md transition-opacity duration-500" />
+                            <div className="flex flex-wrap gap-4">
+                                {/* Poocoin Link */}
+                                <a
+                                    href={POOCOIN_URL}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="group relative inline-flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-green-600/20 via-emerald-500/20 to-green-600/20 border border-green-500/40 rounded-2xl hover:border-green-400/70 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(34,197,94,0.3)]"
+                                >
+                                    {/* Animated glow */}
+                                    <div className="absolute -inset-0.5 bg-gradient-to-r from-green-500 via-emerald-400 to-green-500 rounded-2xl opacity-0 group-hover:opacity-30 blur-md transition-opacity duration-500" />
 
-                                {/* Icon */}
-                                <div className="relative flex items-center justify-center w-12 h-12 bg-green-500/20 rounded-xl border border-green-500/30">
-                                    <TrendingUp className="w-6 h-6 text-green-400 group-hover:scale-110 transition-transform" />
-                                </div>
+                                    {/* Icon */}
+                                    <div className="relative flex items-center justify-center w-10 h-10 bg-green-500/20 rounded-xl border border-green-500/30">
+                                        <TrendingUp className="w-5 h-5 text-green-400 group-hover:scale-110 transition-transform" />
+                                    </div>
 
-                                {/* Content */}
-                                <div className="relative flex flex-col">
-                                    <span className="text-lg font-bold text-green-400">View Chart on Poocoin</span>
-                                    <span className="text-sm text-muted-foreground">Live price, trades & holders</span>
-                                </div>
+                                    {/* Content */}
+                                    <div className="relative flex flex-col">
+                                        <span className="text-base font-bold text-green-400">Poocoin</span>
+                                        <span className="text-xs text-muted-foreground">Live Chart</span>
+                                    </div>
 
-                                {/* Arrow */}
-                                <ExternalLink className="relative w-5 h-5 text-green-400 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                            </a>
+                                    {/* Arrow */}
+                                    <ExternalLink className="relative w-4 h-4 text-green-400 ml-1 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                </a>
+
+                                {/* DexScreener Link */}
+                                <a
+                                    href="https://dexscreener.com/bsc/0x664827bf7f5b366f7c2755bc13ca7612baf956f8"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="group relative inline-flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-cyan-600/20 via-blue-500/20 to-cyan-600/20 border border-cyan-500/40 rounded-2xl hover:border-cyan-400/70 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(34,211,238,0.3)]"
+                                >
+                                    {/* Animated glow */}
+                                    <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 via-blue-400 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-30 blur-md transition-opacity duration-500" />
+
+                                    {/* Icon */}
+                                    <div className="relative flex items-center justify-center w-10 h-10 bg-cyan-500/20 rounded-xl border border-cyan-500/30">
+                                        <TrendingUp className="w-5 h-5 text-cyan-400 group-hover:scale-110 transition-transform" />
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="relative flex flex-col">
+                                        <span className="text-base font-bold text-cyan-400">DexScreener</span>
+                                        <span className="text-xs text-muted-foreground">Live Chart</span>
+                                    </div>
+
+                                    {/* Arrow */}
+                                    <ExternalLink className="relative w-4 h-4 text-cyan-400 ml-1 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                </a>
+                            </div>
                         </div>
 
                         {/* Token Info */}
