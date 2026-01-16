@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import { HelpCircle, MessageCircleQuestion } from 'lucide-react';
+import { ShakeIcon, SwingIcon } from '@/components/ui/animated-icons';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -124,7 +125,9 @@ export function FAQ() {
                 {/* Section Header */}
                 <div ref={headerRef} className="text-center max-w-3xl mx-auto mb-16">
                     <Badge variant="outline" className="mb-4 px-4 py-2 border-primary/30 bg-primary/10">
-                        <HelpCircle className="w-4 h-4 mr-2" />
+                        <ShakeIcon>
+                            <HelpCircle className="w-4 h-4 mr-2" />
+                        </ShakeIcon>
                         FAQ
                     </Badge>
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
@@ -170,7 +173,9 @@ export function FAQ() {
                     {/* Additional help card */}
                     <div className="mt-12 text-center">
                         <div className="inline-flex items-center gap-3 bg-gradient-to-r from-primary/10 to-orange-500/10 border border-primary/20 rounded-2xl px-6 py-4">
-                            <MessageCircleQuestion className="w-6 h-6 text-primary" />
+                            <SwingIcon>
+                                <MessageCircleQuestion className="w-6 h-6 text-primary" />
+                            </SwingIcon>
                             <span className="text-muted-foreground">
                                 Still have questions?
                                 <a href="mailto:contact@zebcoin.ai" className="text-primary font-medium ml-1 hover:underline">

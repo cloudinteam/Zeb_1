@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { CoinScene } from '@/components/three/CoinScene';
 import { ParticleNetwork } from '@/components/three/ParticleNetwork';
+import { FireworksBackground } from '@/components/ui/fireworks-background';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -143,6 +144,14 @@ export function Hero() {
 
     return (
         <section ref={sectionRef} id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 lg:pt-20">
+            {/* Fireworks Background */}
+            <FireworksBackground
+                population={6}
+                fireworkSpeed={{ min: 3, max: 6 }}
+                particleSpeed={{ min: 2, max: 5 }}
+                className="z-0 opacity-70"
+            />
+
             {/* Animated Background */}
             <div className="absolute inset-0 -z-10">
                 <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20" />

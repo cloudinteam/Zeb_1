@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Users, Twitter, Send, TrendingUp, Coins, Activity } from 'lucide-react';
+import { BounceIcon } from '@/components/ui/animated-icons';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -168,7 +169,9 @@ export function CommunityStats() {
                                     backgroundColor: `${stat.color}20`,
                                 }}
                             >
-                                <stat.icon className="w-6 h-6" style={{ color: stat.color }} />
+                                <BounceIcon delay={index * 0.2}>
+                                    <stat.icon className="w-6 h-6" style={{ color: stat.color }} />
+                                </BounceIcon>
                             </div>
 
                             {/* Value */}

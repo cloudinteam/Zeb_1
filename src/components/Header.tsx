@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { ThemeToggle } from '@/components/ThemeToggle';
+import { ThemeTogglerButton } from '@/components/ui/theme-toggler-button';
 
 
 const navLinks = [
@@ -51,7 +51,7 @@ export function Header() {
 
                     {/* Desktop CTA */}
                     <div className="hidden md:flex items-center gap-3">
-                        <ThemeToggle />
+                        <ThemeTogglerButton />
                         <Button variant="outline" size="sm" asChild>
                             <a href="#">
                                 White Paper
@@ -66,7 +66,7 @@ export function Header() {
 
                     {/* Mobile Actions - Theme Toggle & Menu */}
                     <div className="flex items-center gap-2 md:hidden">
-                        <ThemeToggle />
+                        <ThemeTogglerButton />
                         <Sheet open={isOpen} onOpenChange={setIsOpen}>
                             <SheetTrigger asChild>
                                 <Button variant="ghost" size="icon">
@@ -87,7 +87,7 @@ export function Header() {
                                                 <span className="text-muted-foreground">COIN</span>
                                             </span>
                                         </div>
-                                        <ThemeToggle />
+                                        <ThemeTogglerButton />
                                     </div>
                                     <div className="flex flex-col gap-2">
                                         {navLinks.map((link) => (

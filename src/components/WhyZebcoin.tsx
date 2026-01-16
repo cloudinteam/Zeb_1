@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Sparkles, Brain, Shield, Leaf, Zap, Users, TrendingUp, CheckCircle } from 'lucide-react';
+import { ZoomIcon, RubberbandIcon } from '@/components/ui/animated-icons';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -131,7 +132,9 @@ export function WhyZebcoin() {
                 {/* Section Header */}
                 <div ref={headerRef} className="text-center max-w-3xl mx-auto mb-16">
                     <Badge variant="outline" className="mb-4 px-4 py-2 border-primary/30 bg-primary/10">
-                        <Sparkles className="w-4 h-4 mr-2" />
+                        <RubberbandIcon>
+                            <Sparkles className="w-4 h-4 mr-2" />
+                        </RubberbandIcon>
                         Why ZEBCOIN?
                     </Badge>
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
@@ -163,7 +166,9 @@ export function WhyZebcoin() {
                                         backgroundColor: `${diff.color}20`,
                                     }}
                                 >
-                                    <diff.icon className="w-7 h-7" style={{ color: diff.color }} />
+                                    <ZoomIcon delay={index * 0.2}>
+                                        <diff.icon className="w-7 h-7" style={{ color: diff.color }} />
+                                    </ZoomIcon>
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors">

@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { MapPin, Check, Rocket, TrendingUp, Users, Layers, Brain, Server, CreditCard, Copyright, Globe, Leaf, Sparkles } from 'lucide-react';
+import { HeartbeatIcon, GlowIcon } from '@/components/ui/animated-icons';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -201,7 +202,9 @@ export function Roadmap() {
                 {/* Section Header */}
                 <div ref={headerRef} className="text-center max-w-3xl mx-auto mb-16">
                     <Badge variant="outline" className="mb-4 px-4 py-2 border-primary/30 bg-primary/10">
-                        <MapPin className="w-4 h-4 mr-2 text-primary" />
+                        <HeartbeatIcon>
+                            <MapPin className="w-4 h-4 mr-2 text-primary" />
+                        </HeartbeatIcon>
                         Our Journey
                     </Badge>
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
@@ -255,7 +258,9 @@ export function Roadmap() {
                                                         boxShadow: milestone.status === 'current' ? `0 0 20px ${milestone.color}30` : 'none'
                                                     }}
                                                 >
-                                                    <milestone.icon className="w-6 h-6" style={{ color: milestone.color }} />
+                                                    <GlowIcon delay={index * 0.1}>
+                                                        <milestone.icon className="w-6 h-6" style={{ color: milestone.color }} />
+                                                    </GlowIcon>
                                                 </div>
                                                 <div className={`flex flex-col ${index % 2 === 0 ? 'lg:items-end' : ''}`}>
                                                     <Badge

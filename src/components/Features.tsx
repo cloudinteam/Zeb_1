@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Shield, Brain, Leaf, Layers, Cpu, Handshake, Users, Scale, Sparkles } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { FloatIcon, PulseIcon, TadaIcon } from '@/components/ui/animated-icons';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -151,7 +152,9 @@ export function Features() {
                 {/* Section Header */}
                 <div ref={headerRef} className="text-center max-w-3xl mx-auto mb-16">
                     <Badge variant="outline" className="mb-4 px-4 py-2 border-primary/30 bg-primary/10">
-                        <Sparkles className="w-4 h-4 mr-2" />
+                        <TadaIcon>
+                            <Sparkles className="w-4 h-4 mr-2" />
+                        </TadaIcon>
                         Core Features
                     </Badge>
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
@@ -183,7 +186,9 @@ export function Features() {
                             <CardHeader className="relative z-10">
                                 {/* Icon with gradient background */}
                                 <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                                    <feature.icon className="w-7 h-7 text-white" />
+                                    <FloatIcon delay={index * 0.2}>
+                                        <feature.icon className="w-7 h-7 text-white" />
+                                    </FloatIcon>
                                 </div>
                                 <CardTitle className="text-xl lg:text-2xl group-hover:text-primary transition-colors">
                                     {feature.title}
@@ -226,7 +231,9 @@ export function Features() {
                                         boxShadow: `0 0 30px ${area.color}20`
                                     }}
                                 >
-                                    <area.icon className="w-7 h-7" style={{ color: area.color }} />
+                                    <PulseIcon delay={index * 0.15}>
+                                        <area.icon className="w-7 h-7" style={{ color: area.color }} />
+                                    </PulseIcon>
                                 </div>
                                 <h4 className="font-bold mb-2 group-hover:text-primary transition-colors">{area.title}</h4>
                                 <p className="text-sm text-muted-foreground leading-relaxed">{area.description}</p>
