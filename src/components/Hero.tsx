@@ -199,7 +199,7 @@ export function Hero() {
                         <div ref={badgeRef}>
                             <Badge variant="outline" className="mb-6 px-4 py-2 text-sm border-primary/30 bg-primary/10">
                                 <Sparkles className="w-4 h-4 mr-2 text-primary" />
-                                IDO Launching Soon
+                                IDO Launched
                             </Badge>
                         </div>
 
