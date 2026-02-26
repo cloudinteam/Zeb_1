@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, FileText, Sparkles, Zap, Copy, Check, ExternalLink, TrendingUp } from 'lucide-react';
+import { ArrowRight, FileText, Sparkles, Zap, Copy, Check, ExternalLink } from 'lucide-react';
 
 const CONTRACT_ADDRESS = '0x32Aa387310D7410Dbe3FE63b18aeD42065E520a0';
-const POOCOIN_URL = 'https://poocoin.app/tokens/0x32aa387310d7410dbe3fe63b18aed42065e520a0';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { CoinScene } from '@/components/three/CoinScene';
@@ -262,58 +261,25 @@ export function Hero() {
                             </Button>
                         </div>
 
-                        {/* Chart Links */}
+                        {/* Presale Status */}
                         <div ref={poocoinRef} className="max-w-2xl mx-auto lg:mx-0">
-                            <div className="flex flex-wrap gap-4">
-                                {/* Poocoin Link */}
-                                <a
-                                    href={POOCOIN_URL}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="group relative inline-flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-green-600/20 via-emerald-500/20 to-green-600/20 border border-green-500/40 rounded-2xl hover:border-green-400/70 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(34,197,94,0.3)]"
-                                >
-                                    {/* Animated glow */}
-                                    <div className="absolute -inset-0.5 bg-gradient-to-r from-green-500 via-emerald-400 to-green-500 rounded-2xl opacity-0 group-hover:opacity-30 blur-md transition-opacity duration-500" />
+                            <div className="group relative inline-flex items-center gap-4 px-6 py-4 bg-gradient-to-r from-primary/20 via-orange-500/10 to-primary/20 border border-primary/40 rounded-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(var(--primary),0.3)]">
+                                {/* Animated glow */}
+                                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 via-orange-500/30 to-primary/50 rounded-2xl opacity-20 group-hover:opacity-40 blur-md transition-opacity duration-500" />
 
-                                    {/* Icon */}
-                                    <div className="relative flex items-center justify-center w-10 h-10 bg-green-500/20 rounded-xl border border-green-500/30">
-                                        <TrendingUp className="w-5 h-5 text-green-400 group-hover:scale-110 transition-transform" />
-                                    </div>
+                                {/* Icon */}
+                                <div className="relative flex items-center justify-center w-12 h-12 bg-primary/20 rounded-xl border border-primary/30">
+                                    <Sparkles className="w-6 h-6 text-primary animate-pulse" />
+                                </div>
 
-                                    {/* Content */}
-                                    <div className="relative flex flex-col">
-                                        <span className="text-base font-bold text-green-400">Poocoin</span>
-                                        <span className="text-xs text-muted-foreground">Live Chart</span>
-                                    </div>
-
-                                    {/* Arrow */}
-                                    <ExternalLink className="relative w-4 h-4 text-green-400 ml-1 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                                </a>
-
-                                {/* DexScreener Link */}
-                                <a
-                                    href="https://dexscreener.com/bsc/0x664827bf7f5b366f7c2755bc13ca7612baf956f8"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="group relative inline-flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-cyan-600/20 via-blue-500/20 to-cyan-600/20 border border-cyan-500/40 rounded-2xl hover:border-cyan-400/70 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(34,211,238,0.3)]"
-                                >
-                                    {/* Animated glow */}
-                                    <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 via-blue-400 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-30 blur-md transition-opacity duration-500" />
-
-                                    {/* Icon */}
-                                    <div className="relative flex items-center justify-center w-10 h-10 bg-cyan-500/20 rounded-xl border border-cyan-500/30">
-                                        <TrendingUp className="w-5 h-5 text-cyan-400 group-hover:scale-110 transition-transform" />
-                                    </div>
-
-                                    {/* Content */}
-                                    <div className="relative flex flex-col">
-                                        <span className="text-base font-bold text-cyan-400">DexScreener</span>
-                                        <span className="text-xs text-muted-foreground">Live Chart</span>
-                                    </div>
-
-                                    {/* Arrow */}
-                                    <ExternalLink className="relative w-4 h-4 text-cyan-400 ml-1 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                                </a>
+                                {/* Content */}
+                                <div className="relative flex flex-col">
+                                    <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary to-orange-400 bg-clip-text text-transparent">PRESALE IS LIVE</span>
+                                    <span className="text-sm font-medium text-muted-foreground flex items-center gap-2 mt-0.5">
+                                        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.6)]"></span>
+                                        Join the revolution early
+                                    </span>
+                                </div>
                             </div>
                         </div>
 
